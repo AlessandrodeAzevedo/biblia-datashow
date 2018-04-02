@@ -11,7 +11,6 @@
     },
     "temas": {
       "resgate": {
-        "versao": "acf.json",
         "background": "movies/defalt.mp4",
         "texto_type": "AmaticSC",
         "texto_shadow": {
@@ -29,6 +28,7 @@
       }
     },
     "ativo": {
+      "versao": "acf.json",
       "tema":"resgate",
       "livro": 0,
       "fonte":60,

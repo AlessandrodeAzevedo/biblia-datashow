@@ -25,12 +25,12 @@ export class BibliaService {
     this.resolution = window.screen.availWidth+"x"+window.screen.availHeight;
 
     if(this.app['biblia']['sizes'][this.resolution] == undefined){
-      this.app['biblia']['sizes'][this.resolution] = {"504":"2.6499999999999995","12":"10.934827117327158"};
+      this.app['biblia']['sizes'][this.resolution] = {"40":"8.206321343516462"};
     }
 
     this.tema = this.app['biblia']['ativo']['tema'];
     this.fonte = this.app['biblia']['ativo']['fonte'];
-    this.versao = this.app['biblia']['temas'][this.tema]['versao'];
+    this.versao = this.app['biblia']['ativo']['versao'];
     this.livro = this.app['biblia']['ativo']['livro'];
     this.livro = this.app['biblia']['ativo']['livro'];
     this.capitulo = this.app['biblia']['ativo']['capitulo']['numero'];
@@ -110,8 +110,8 @@ export class BibliaService {
     //return localStorage.font = value;
   }
   setVersao(value){
-    this.app['biblia']['temas'][this.tema]['versao'] = value;
-    this.versao = this.app['biblia']['temas'][this.tema]['versao'];
+    this.app['biblia']['ativo']['versao'] = value;
+    this.versao = this.app['biblia']['ativo']['versao'];
     this.atualizaStorage();
     //return localStorage.version = value;
   }

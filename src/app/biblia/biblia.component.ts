@@ -35,22 +35,22 @@ export class BibliaComponent implements OnInit {
   }
   
   getfont(){
+    console.log(this.texto.length);
     if(this.fontSizes[this.texto.length] == undefined){      
       //Pega o valor salvo das lengths
       let keys = Object.keys(this.fontSizes);
       //let valor = 80; //length atual que também é o nome da key
       //Ordena as length salvos do menor para o maior
       keys.sort(function(a, b){return +a-(+b)});
-      //console.log(this.texto.length);
       //verifica se o length é o menor de todos
       if(this.texto.length < +keys[0]){
-        //console.log("menor de todos");
+        console.log("menor de todos");
         //caso seja o menor pega exatamente o tamanho do menor
         this.textoSize = this.fontSizes[+keys[0]];        
       }else
       //verifica se é o maior de todos
       if(this.texto.length > +keys[+keys.length-1]){
-        //console.log("maior de todos de todos");
+        console.log("maior de todos de todos");
         //caso seja o maior pega exatamente o tamanho do maior
         this.textoSize = this.fontSizes[+keys[+keys.length-1]];        
       }else{
@@ -68,7 +68,15 @@ export class BibliaComponent implements OnInit {
         let porcentagem_length = (texto*100)/cem;
         let cem_font = (+this.fontSizes[+antercessor]) - (+this.fontSizes[+sucessor]);
         let valor_para_subtrair = (cem_font*porcentagem_length)/100;
-        this.textoSize = +this.fontSizes[+antercessor]+valor_para_subtrair;
+        console.log("Antercessor:");
+        console.log(+this.fontSizes[+antercessor]);
+        console.log("Sucessor:");
+        console.log(+this.fontSizes[+sucessor]);
+        console.log("calculo:");
+        console.log(valor_para_subtrair);
+        console.log("Subtraido:");
+        console.log(+this.fontSizes[+antercessor]+valor_para_subtrair);
+        this.textoSize = +this.fontSizes[+antercessor]-(+valor_para_subtrair);
         if(+sucessor - this.texto.length < this.texto.length - +antercessor){
           console.log("mais perto do sucessor:"+sucessor+" o antercessor é: "+antercessor);
         }else{
@@ -77,7 +85,7 @@ export class BibliaComponent implements OnInit {
       }
     }else{
       //caso já exista pega do mesmo tamanho
-      //console.log("já existe");
+      console.log("já existe");
       this.textoSize = this.fontSizes[this.texto.length];
     }   
     return this.textoSize; 

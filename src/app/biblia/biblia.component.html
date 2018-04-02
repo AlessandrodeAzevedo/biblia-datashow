@@ -1,0 +1,19 @@
+<video autoplay loop [muted]="true">
+  <source src="/assets/media/backgrounds/movies/default.mp4" type="video/mp4">
+</video>
+<div class="biblia content">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-12 texto" [ngStyle]="{'font-size': getfont() + 'em'}">{{ texto }}</div>      
+    </div>
+
+    <div class="row">
+        <div class="col endereco"><div>{{ endereco }}</div></div>
+        <div class="col logo">
+            <img src="/assets/media/images/color-wh.png" data-toggle="modal" (click)="showMenu()" mdbRippleRadius class="mx-auto d-block" >
+        </div>      
+    </div>
+    <biblia-atalho [menuShow]="mostraMenu" [atalhoShow]="mostraAtalho" (mudaTexto)="carregarAtalho($event)"></biblia-atalho>
+    <biblia-menu [menuShow]="mostraMenu" [atalhoShow]="mostraAtalho" (atualizaTexto)="charge()"></biblia-menu>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div mdbModal #menu="mdb-modal" class="modal fade bottom" id="menuModalBottom" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+  <div class="modal-dialog modal-frame modal-bottom" role="document">
+    <div class="modal-content">
+      <div class="row">
+        <p>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="fechaMenu()">
+            <span aria-hidden="true">×</span>
+          </button>
+        </p>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col">
+              <label>Livro:</label>
+              <select [(ngModel)] = "livro" (change) = "atualizaCapitulo()" class="form-control">
+                  <option *ngFor="let livro of livros" [value]="livro.id">{{livro.name}}</option>    
+              </select>
+          </div>
+          <div class="col">
+              <label for="capitulo">Capitulo</label>
+              <input [(ngModel)] = "capitulo" type="number" (change) = "atualizaVersiculo()" min="1" max="{{ maxCapitulo }}" id="capitulo" (change) = "verificaNumero()" class="form-control" mdbActive>
+          </div>
+          <div class="col">
+              <label for="versiculo">Versículo</label>
+              <input [(ngModel)] = "versiculo" type="number" min="1" [max]="maxVersiculo" id="versiculo" (change) = "verificaNumero()" class="form-control" mdbActive>
+          </div>
+          <div class="col">
+              <label for="versao">Versão</label>
+              <select [(ngModel)] = "versao" class="form-control">
+                  <option *ngFor="let versao of versoes" [value]="versao.id">{{versao.name}}</option>
+              </select>
+          </div>
+          <div class="col-md-2">
+              <button (click) = "novoTexto(true)" class="btn btn-primary"><i class="fa fa-send"></i> Enviar</button>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>

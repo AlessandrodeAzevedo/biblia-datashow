@@ -8,6 +8,11 @@
   },
   "exclude": [
     "test.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts"    
+  ],
+  "include": [
+    "**/*.ts",
+    "../node_modules/angular-bootstrap-md/index.ts"
   ]
+
 }

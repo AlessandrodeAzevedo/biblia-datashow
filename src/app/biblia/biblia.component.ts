@@ -10,7 +10,9 @@ import { HostListener } from '@angular/core';
 
 
 export class BibliaComponent implements OnInit {
-  
+  @ViewChild('calibracao') public calibracao;
+  @ViewChild('calibrando') public calibrando;
+
   book:JSON = this.bibliaService.getBook();
   texto:string;
   textoSize:number = this.bibliaService.getTextoSize();
@@ -24,6 +26,8 @@ export class BibliaComponent implements OnInit {
   livro = this.bibliaService.getLivro();
   maxVersiculo = this.bibliaService.getMaxVersiculo();
   maxCapitulo = this.bibliaService.getMaxCapitulo();
+  mostraCalibracao:boolean = false;
+  passosCalibracao:number;
 
   constructor(private bibliaService: BibliaService) { }
  
@@ -33,9 +37,29 @@ export class BibliaComponent implements OnInit {
   atualizaMaximos(){
 
   }
-  
+  calibrar_font(calibrar){
+    this.calibracao.hide();    
+    if(calibrar){
+      this.bibliaService.resetFont();
+      this.fontSizes = this.bibliaService.getFontSizes();
+      this.mostraCalibracao = true;
+      this.passosCalibracao = 1;
+      this.livro = 0;
+      this.capitulo = 10;
+      this.versiculo = 10;
+      this.maxCapitulo = this.book[+this.livro].chapters.length;
+      let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
+      let maxVersiculo = 0;
+      for (let [key, value] of Object.entries(versiculos)) {
+        maxVersiculo++;
+      }
+      this.maxVersiculo = maxVersiculo;
+      this.charge();
+      this.calibrando.show();
+    }
+  }
   getfont(){
-    console.log(this.texto.length);
+    //console.log(this.texto.length);
     if(this.fontSizes[this.texto.length] == undefined){      
       //Pega o valor salvo das lengths
       let keys = Object.keys(this.fontSizes);
@@ -44,13 +68,13 @@ export class BibliaComponent implements OnInit {
       keys.sort(function(a, b){return +a-(+b)});
       //verifica se o length é o menor de todos
       if(this.texto.length < +keys[0]){
-        console.log("menor de todos");
+        //console.log("menor de todos");
         //caso seja o menor pega exatamente o tamanho do menor
         this.textoSize = this.fontSizes[+keys[0]];        
       }else
       //verifica se é o maior de todos
       if(this.texto.length > +keys[+keys.length-1]){
-        console.log("maior de todos de todos");
+        //console.log("maior de todos de todos");
         //caso seja o maior pega exatamente o tamanho do maior
         this.textoSize = this.fontSizes[+keys[+keys.length-1]];        
       }else{
@@ -68,24 +92,16 @@ export class BibliaComponent implements OnInit {
         let porcentagem_length = (texto*100)/cem;
         let cem_font = (+this.fontSizes[+antercessor]) - (+this.fontSizes[+sucessor]);
         let valor_para_subtrair = (cem_font*porcentagem_length)/100;
-        console.log("Antercessor:");
-        console.log(+this.fontSizes[+antercessor]);
-        console.log("Sucessor:");
-        console.log(+this.fontSizes[+sucessor]);
-        console.log("calculo:");
-        console.log(valor_para_subtrair);
-        console.log("Subtraido:");
-        console.log(+this.fontSizes[+antercessor]+valor_para_subtrair);
         this.textoSize = +this.fontSizes[+antercessor]-(+valor_para_subtrair);
         if(+sucessor - this.texto.length < this.texto.length - +antercessor){
-          console.log("mais perto do sucessor:"+sucessor+" o antercessor é: "+antercessor);
+          //console.log("mais perto do sucessor:"+sucessor+" o antercessor é: "+antercessor);
         }else{
-          console.log("mais perto do antercessor:"+antercessor+" o sucessor é: "+sucessor);
+          //console.log("mais perto do antercessor:"+antercessor+" o sucessor é: "+sucessor);
         }        
       }
     }else{
       //caso já exista pega do mesmo tamanho
-      console.log("já existe");
+      //console.log("já existe");
       this.textoSize = this.fontSizes[this.texto.length];
     }   
     return this.textoSize; 
@@ -97,8 +113,8 @@ export class BibliaComponent implements OnInit {
   charge(){
     this.mostraMenu = false;
     this.mostraAtalho = false;
-
-    this.livro = this.bibliaService.getLivro();
+    
+    /* this.livro = this.bibliaService.getLivro();
     this.capitulo = this.bibliaService.getCapitulo();
     this.versiculo = this.bibliaService.getVersiculo();
     this.bibliaService.setMaxCapitulo(this.book[+this.livro].chapters.length);
@@ -110,7 +126,7 @@ export class BibliaComponent implements OnInit {
       maxVersiculo++;
     }
     this.bibliaService.setMaxVersiculo(maxVersiculo);
-    this.maxVersiculo = this.bibliaService.getMaxVersiculo();    
+    this.maxVersiculo = this.bibliaService.getMaxVersiculo();   */  
     
     let nomeLivro = this.book[+this.livro].book;   
     if(nomeLivro == "Lamentações de Jeremias"){
@@ -260,82 +276,135 @@ export class BibliaComponent implements OnInit {
           this.mostraAtalho = false;
         }
       }else
-      if(this.mostraMenu == false && this.mostraAtalho == false){
-        if(event.key == 'Enter'){
-          this.mostraAtalho = true;
+      if(!this.mostraMenu && !this.mostraAtalho){
+        if(event.key == 'c' && event.ctrlKey){
+          this.calibracao.show();          
         }
-        if(event.key == 'ArrowRight'){
-          if((+this.versiculo+1)>0 && (+this.versiculo+1)<=+this.maxVersiculo){
-            this.bibliaService.setVersiculo((+this.versiculo+1));
-            this.versiculo = this.bibliaService.getVersiculo();
-            
-            this.bibliaService.setMaxCapitulo(this.book[+this.livro].chapters.length);
-            this.maxCapitulo = this.bibliaService.getMaxCapitulo();
-
-            let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
-            var maxVersiculo = 0;
-            for (let [key, value] of Object.entries(versiculos)) {
-              maxVersiculo++;
-            }
-            this.bibliaService.setMaxVersiculo(maxVersiculo);
-            
-            this.charge();
-            //caso versiculo seja maior chama o primeiro versiculo do próximo capitulo
-          }else if((+this.versiculo+1) > +this.maxVersiculo){
-            //verifica se tem mais capitulos
-            if((+this.capitulo+1)<(+this.maxCapitulo)){
-              this.bibliaService.setCapitulo((+this.capitulo+1));
-              this.capitulo = this.bibliaService.getCapitulo();
-              
-              this.bibliaService.setVersiculo(1);
-              this.versiculo = this.bibliaService.getVersiculo();
-
+        
+        if(event.key == 'Enter'){
+          if(this.mostraCalibracao && this.passosCalibracao){
+            if(this.passosCalibracao == 1){
+              this.livro = 0;
+              this.capitulo = 2;
+              this.versiculo = 18;
+              this.maxCapitulo = this.book[+this.livro].chapters.length;
               let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
               let maxVersiculo = 0;
               for (let [key, value] of Object.entries(versiculos)) {
                 maxVersiculo++;
               }
+              this.maxVersiculo = maxVersiculo;
+              this.passosCalibracao = 2;
+              this.charge();
+            }else
+            if(this.passosCalibracao == 2){
+              this.livro = 0;
+              this.capitulo = 0;
+              this.versiculo = 2;
+              this.maxCapitulo = this.book[+this.livro].chapters.length;
+              let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
+              let maxVersiculo = 0;
+              for (let [key, value] of Object.entries(versiculos)) {
+                maxVersiculo++;
+              }
+              this.maxVersiculo = maxVersiculo;
+              this.passosCalibracao = 3;
+              this.charge();
+            }else
+            if(this.passosCalibracao == 3){
+              this.livro = 0;
+              this.capitulo = 0;
+              this.versiculo = 21;
+              this.maxCapitulo = this.book[+this.livro].chapters.length;
+              let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
+              let maxVersiculo = 0;
+              for (let [key, value] of Object.entries(versiculos)) {
+                maxVersiculo++;
+              }
+              this.maxVersiculo = maxVersiculo;
+              this.passosCalibracao = 4;
+              this.charge();
+            }else
+            if(this.passosCalibracao == 4){
+              this.livro = 1;
+              this.capitulo = 12;
+              this.versiculo = 15;
+              this.maxCapitulo = this.book[+this.livro].chapters.length;
+              let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
+              let maxVersiculo = 0;
+              for (let [key, value] of Object.entries(versiculos)) {
+                maxVersiculo++;
+              }
+              this.maxVersiculo = maxVersiculo;
+              this.passosCalibracao = 5;
+              this.charge();
+            }else
+            if(this.passosCalibracao == 5){
+              this.livro = 16;
+              this.capitulo = 7;
+              this.versiculo = 9;
+              this.maxCapitulo = this.book[+this.livro].chapters.length;
+              let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
+              let maxVersiculo = 0;
+              for (let [key, value] of Object.entries(versiculos)) {
+                maxVersiculo++;
+              }
+              this.maxVersiculo = maxVersiculo;
+              this.charge();
+              this.passosCalibracao = 6;
+            }else
+            if(this.passosCalibracao == 6){
+              this.livro = this.bibliaService.getLivro();
+              this.capitulo = this.bibliaService.getCapitulo();
+              this.versiculo = this.bibliaService.getVersiculo();
 
               this.bibliaService.setMaxCapitulo(this.book[+this.livro].chapters.length);
               this.maxCapitulo = this.bibliaService.getMaxCapitulo();
-
+          
+              let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
+              let maxVersiculo = 0;
+              for (let [key, value] of Object.entries(versiculos)) {
+                maxVersiculo++;
+              }
               this.bibliaService.setMaxVersiculo(maxVersiculo);
               this.maxVersiculo = this.bibliaService.getMaxVersiculo();
+              this.passosCalibracao = null;
+              this.calibrando.hide();
               this.charge();
-              //caso o capitulo seja maior chama o próximo livro
-            }else if((+this.capitulo+1)>=+this.maxCapitulo){
-              //verifica se tem mais livros
-              if((+this.livro+1) < 66){
-                this.bibliaService.setLivro((+this.livro+1));
-                this.livro = this.bibliaService.getLivro();
+              this.fontSizes = this.bibliaService.getFontSizes();
+              location.reload();
+              return false;
+            }
+          }else{
+            this.mostraCalibracao = false;
+            this.mostraAtalho = true;
+          }
+        }
+        if(!this.mostraCalibracao && !this.passosCalibracao){
+          if(event.key == 'ArrowRight'){
+            if((+this.versiculo+1)>0 && (+this.versiculo+1)<=+this.maxVersiculo){
+              this.bibliaService.setVersiculo((+this.versiculo+1));
+              this.versiculo = this.bibliaService.getVersiculo();
+              
+              this.bibliaService.setMaxCapitulo(this.book[+this.livro].chapters.length);
+              this.maxCapitulo = this.bibliaService.getMaxCapitulo();
 
-                this.bibliaService.setCapitulo(0);
-                this.capitulo = this.bibliaService.getCapitulo();
-                
-                this.bibliaService.setMaxCapitulo(this.book[+this.livro].chapters.length);
-                this.maxCapitulo = this.bibliaService.getMaxCapitulo();
-
-                let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
-                var maxVersiculo = 0;
-                for (let [key, value] of Object.entries(versiculos)) {
-                  maxVersiculo++;
-                }
-                this.bibliaService.setMaxVersiculo(maxVersiculo);
-                this.bibliaService.setVersiculo(1);
-                this.maxVersiculo = this.bibliaService.getMaxVersiculo();
-                this.versiculo = this.bibliaService.getVersiculo();
-                this.charge();            
+              let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
+              var maxVersiculo = 0;
+              for (let [key, value] of Object.entries(versiculos)) {
+                maxVersiculo++;
               }
-              /* if((+this.livro+1) < 66){
-
-                this.bibliaService.setLivro((+this.livro+1));
-                this.livro = this.bibliaService.getLivro();
-
+              this.bibliaService.setMaxVersiculo(maxVersiculo);
+              
+              this.charge();
+              //caso versiculo seja maior chama o primeiro versiculo do próximo capitulo
+            }else if((+this.versiculo+1) > +this.maxVersiculo){
+              //verifica se tem mais capitulos
+              if((+this.capitulo+1)<(+this.maxCapitulo)){
                 this.bibliaService.setCapitulo((+this.capitulo+1));
                 this.capitulo = this.bibliaService.getCapitulo();
-                this.bibliaService.setMaxCapitulo(this.capitulo);
-
-                this.bibliaService.setVersiculo((+this.versiculo+1));
+                
+                this.bibliaService.setVersiculo(1);
                 this.versiculo = this.bibliaService.getVersiculo();
 
                 let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
@@ -343,52 +412,54 @@ export class BibliaComponent implements OnInit {
                 for (let [key, value] of Object.entries(versiculos)) {
                   maxVersiculo++;
                 }
-                this.bibliaService.setMaxVersiculo(maxVersiculo);
-                this.maxVersiculo = this.bibliaService.getMaxVersiculo();
-                
-                this.charge();
-              } */
-            }
-          }
-        }
-        if(event.key == 'ArrowLeft'){
-          if((+this.versiculo-1)>0 && (+this.versiculo-1)<=+this.maxVersiculo){
-            this.bibliaService.setVersiculo((+this.versiculo-1));
-            this.versiculo = this.bibliaService.getVersiculo();
-            console.log("normal");
-            this.charge();
-          }
-          //Caso o versiculo for menor ou igual a zero precisa chamar o capitulo anterior no último versículo
-          if((+this.versiculo-1) <=0){
-            if((+this.capitulo-1)>=0){
-              this.bibliaService.setCapitulo((+this.capitulo-1));
-              this.capitulo = this.bibliaService.getCapitulo();            
-              let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
-              let maxVersiculo = 0;
-              for (let [key, value] of Object.entries(versiculos)) {
-                maxVersiculo++;
-              }
-              this.bibliaService.setMaxVersiculo(maxVersiculo);
-              this.bibliaService.setVersiculo(maxVersiculo);
-              this.maxVersiculo = this.bibliaService.getMaxVersiculo();
-              this.versiculo = this.bibliaService.getVersiculo();
-              this.charge();
-            }
-            //Caso o capitulo for menor ou igual a zero precisa chamar o último capitulo do livro anterior
-            if((+this.capitulo-1)<0){
-              if((+this.livro-1) >= 0){
-
-                this.bibliaService.setLivro((+this.livro-1));
-                this.livro = this.bibliaService.getLivro();
 
                 this.bibliaService.setMaxCapitulo(this.book[+this.livro].chapters.length);
                 this.maxCapitulo = this.bibliaService.getMaxCapitulo();
 
-                this.bibliaService.setCapitulo(((+this.book[+this.livro].chapters.length)-1));
-                this.capitulo = this.bibliaService.getCapitulo();
+                this.bibliaService.setMaxVersiculo(maxVersiculo);
+                this.maxVersiculo = this.bibliaService.getMaxVersiculo();
+                this.charge();
+                //caso o capitulo seja maior chama o próximo livro
+              }else if((+this.capitulo+1)>=+this.maxCapitulo){
+                //verifica se tem mais livros
+                if((+this.livro+1) < 66){
+                  this.bibliaService.setLivro((+this.livro+1));
+                  this.livro = this.bibliaService.getLivro();
 
+                  this.bibliaService.setCapitulo(0);
+                  this.capitulo = this.bibliaService.getCapitulo();
+                  
+                  this.bibliaService.setMaxCapitulo(this.book[+this.livro].chapters.length);
+                  this.maxCapitulo = this.bibliaService.getMaxCapitulo();
+
+                  let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
+                  var maxVersiculo = 0;
+                  for (let [key, value] of Object.entries(versiculos)) {
+                    maxVersiculo++;
+                  }
+                  this.bibliaService.setMaxVersiculo(maxVersiculo);
+                  this.bibliaService.setVersiculo(1);
+                  this.maxVersiculo = this.bibliaService.getMaxVersiculo();
+                  this.versiculo = this.bibliaService.getVersiculo();
+                  this.charge();            
+                }
+              }
+            }
+          }
+          if(event.key == 'ArrowLeft'){
+            if((+this.versiculo-1)>0 && (+this.versiculo-1)<=+this.maxVersiculo){
+              this.bibliaService.setVersiculo((+this.versiculo-1));
+              this.versiculo = this.bibliaService.getVersiculo();
+              console.log("normal");
+              this.charge();
+            }
+            //Caso o versiculo for menor ou igual a zero precisa chamar o capitulo anterior no último versículo
+            if((+this.versiculo-1) <=0){
+              if((+this.capitulo-1)>=0){
+                this.bibliaService.setCapitulo((+this.capitulo-1));
+                this.capitulo = this.bibliaService.getCapitulo();            
                 let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
-                var maxVersiculo = 0;
+                let maxVersiculo = 0;
                 for (let [key, value] of Object.entries(versiculos)) {
                   maxVersiculo++;
                 }
@@ -396,7 +467,32 @@ export class BibliaComponent implements OnInit {
                 this.bibliaService.setVersiculo(maxVersiculo);
                 this.maxVersiculo = this.bibliaService.getMaxVersiculo();
                 this.versiculo = this.bibliaService.getVersiculo();
-                this.charge();            
+                this.charge();
+              }
+              //Caso o capitulo for menor ou igual a zero precisa chamar o último capitulo do livro anterior
+              if((+this.capitulo-1)<0){
+                if((+this.livro-1) >= 0){
+
+                  this.bibliaService.setLivro((+this.livro-1));
+                  this.livro = this.bibliaService.getLivro();
+
+                  this.bibliaService.setMaxCapitulo(this.book[+this.livro].chapters.length);
+                  this.maxCapitulo = this.bibliaService.getMaxCapitulo();
+
+                  this.bibliaService.setCapitulo(((+this.book[+this.livro].chapters.length)-1));
+                  this.capitulo = this.bibliaService.getCapitulo();
+
+                  let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
+                  var maxVersiculo = 0;
+                  for (let [key, value] of Object.entries(versiculos)) {
+                    maxVersiculo++;
+                  }
+                  this.bibliaService.setMaxVersiculo(maxVersiculo);
+                  this.bibliaService.setVersiculo(maxVersiculo);
+                  this.maxVersiculo = this.bibliaService.getMaxVersiculo();
+                  this.versiculo = this.bibliaService.getVersiculo();
+                  this.charge();            
+                }
               }
             }
           }

@@ -11,6 +11,7 @@ export class AtalhoComponent implements OnInit {
   @ViewChild('atalho') public atalho;
   @ViewChild('focusInput') focusInput: ElementRef;
   @Input() menuShow:boolean;
+  @Input() calibracaoShow:boolean;
   @Output() mudaTexto = new EventEmitter();
   @HostListener('focusout', ['$event']) public onListenerTriggered(event: any): void {
     this.setFocusToInput();
@@ -50,7 +51,7 @@ export class AtalhoComponent implements OnInit {
   }
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) { 
-    if(event.key == 'Enter' && !this.menuShow){
+    if(event.key == 'Enter' && !this.menuShow && !this.calibracaoShow){
       if(this.atalho.isShown && this.atalhoInput){
         let livro = this.atalhoInput.split(" ")[0] || 0;
         livro = this.retira_acentos(livro);

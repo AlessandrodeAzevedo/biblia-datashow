@@ -32,7 +32,6 @@ export class BibliaService {
     this.fonte = this.app['biblia']['ativo']['fonte'];
     this.versao = this.app['biblia']['ativo']['versao'];
     this.livro = this.app['biblia']['ativo']['livro'];
-    this.livro = this.app['biblia']['ativo']['livro'];
     this.capitulo = this.app['biblia']['ativo']['capitulo']['numero'];
     this.maxCapitulo = this.app['biblia']['ativo']['capitulo']['maximo'];
     this.versiculo = this.app['biblia']['ativo']['versiculo']['numero'];
@@ -45,7 +44,12 @@ export class BibliaService {
   atualizaStorage(){
     localStorage.app = JSON.stringify(this.app);
   }
-
+  resetFont(){
+    delete(this.app['biblia']['sizes'][this.resolution]);
+    this.atualizaStorage();
+    this.app['biblia']['sizes'][this.resolution] = {"40":"8.206321343516462"};
+    this.sizes = this.app['biblia']['sizes'][this.resolution];
+  }
   /* 
     * Getters 
     */

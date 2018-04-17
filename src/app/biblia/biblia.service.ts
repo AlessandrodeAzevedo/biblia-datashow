@@ -13,8 +13,11 @@ export class BibliaService {
   maxCapitulo:number;
   versiculo:number;
   maxVersiculo:number;
+  indice:Array<any>;
   sizes:Array<any>;
   versoes:Array<any>;
+  historics:Array<any>;
+  saves:Array<any>;
   
   constructor() {
     
@@ -38,6 +41,8 @@ export class BibliaService {
     this.maxVersiculo = this.app['biblia']['ativo']['versiculo']['maximo'];    
     this.sizes = this.app['biblia']['sizes'][this.resolution];
     this.versoes = this.app['biblia']['versoes'];
+    this.historics = this.app['biblia']['historics'];
+    this.saves = this.app['biblia']['saves'];    
     
   }
 
@@ -51,8 +56,12 @@ export class BibliaService {
     this.sizes = this.app['biblia']['sizes'][this.resolution];
   }
   /* 
-    * Getters 
-    */
+   * Getters 
+   */
+  getIndice(){
+    return this.indice;
+    //return JSON.parse(localStorage.fontSizes || '{"500":"2.55","5":"8.0"}');
+  }
   getFontSizes(){
     return this.sizes;
     //return JSON.parse(localStorage.fontSizes || '{"500":"2.55","5":"8.0"}');
@@ -98,9 +107,19 @@ export class BibliaService {
     }
     return versoes_array;
   }
+  getHistorics(){
+    return this.historics;
+  }
+  getSaves(){
+    return this.saves;
+  }
+  
   /* 
     * Setters 
     */
+  setIndice(value){
+    this.indice = value;
+  }
   setFontSizes(value){
     this.app['biblia']['sizes'][this.resolution] = value;
     this.sizes = this.app['biblia']['sizes'][this.resolution];
@@ -148,5 +167,15 @@ export class BibliaService {
     this.maxVersiculo = this.app['biblia']['ativo']['versiculo']['maximo'];
     this.atualizaStorage();
     //return localStorage.maxVersiculo = value;
+  }
+  setHistorics(value){
+    this.app['biblia']['historics'] = value;
+    this.historics = this.app['biblia']['historics'];
+    this.atualizaStorage();    
+  }
+  setSaves(value){
+    this.app['biblia']['saves'] = value;
+    this.historics = this.app['biblia']['saves'];
+    this.atualizaStorage();    
   }
 }

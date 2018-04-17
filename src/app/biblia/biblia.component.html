@@ -15,6 +15,7 @@
     </div>
     <biblia-atalho [menuShow]="mostraMenu" [atalhoShow]="mostraAtalho" [calibracaoShow]="mostraCalibracao" (mudaTexto)="carregarAtalho($event)"></biblia-atalho>
     <biblia-menu [menuShow]="mostraMenu" [atalhoShow]="mostraAtalho" (atualizaTexto)="charge()"></biblia-menu>
+    <biblia-menu-lateral [menuLateralShow]="mostraMenuLateral" [menuShow]="mostraMenu" [atalhoShow]="mostraAtalho" (atualizaTexto)="charge()"></biblia-menu-lateral>
   </div>
 </div>
 
@@ -42,7 +43,7 @@
                   
                   <div style="font-size:20px"><i class="fa fa-exclamation-triangle mb-3 animated rotateIn"></i> Calibrando ...</div>
                   <div>Ajuste o texto utilizando as setas para cima e para baixo,<br>logo após pressione ENTER</div>
-                  <div>{{ passosCalibracao }}</div>
+                  <div>{{ passosCalibracao }}/6</div>
               </div>
           </div>
       </div>

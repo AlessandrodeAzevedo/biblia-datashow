@@ -1,6 +1,8 @@
 import { BibliaService } from './biblia.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HostListener } from '@angular/core';
+import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'biblia',
@@ -19,6 +21,7 @@ export class BibliaComponent implements OnInit {
   fontSizes:Array<any> = this.bibliaService.getFontSizes();
   endereco:string;
   mostraMenu:boolean = false;
+  mostraMenuLateral:boolean = false;
   mostraAtalho:boolean = false;
   capitulo = this.bibliaService.getCapitulo();
   versiculo:number = this.bibliaService.getVersiculo();
@@ -26,16 +29,38 @@ export class BibliaComponent implements OnInit {
   livro = this.bibliaService.getLivro();
   maxVersiculo = this.bibliaService.getMaxVersiculo();
   maxCapitulo = this.bibliaService.getMaxCapitulo();
+  historics:Array<any> = this.bibliaService.getHistorics();
+  saves:Array<any> = this.bibliaService.getSaves();
   mostraCalibracao:boolean = false;
   passosCalibracao:number;
 
-  constructor(private bibliaService: BibliaService) { }
+  constructor(private bibliaService: BibliaService,private router: Router) { }
  
   ngOnInit() { 
-    this.charge();
+    this.charge();    
   }
-  atualizaMaximos(){
+  salvar(){
+    let dados:Object = {};
+    dados['caminho'] = this.livro+" "+(+this.capitulo+1)+" "+this.versiculo;
+    dados['data'] = moment().format("DD-MM-YYYY HH:mm:ss");
+    if(this.saves.length > 49){
+      this.saves.pop();
+    }
+    this.saves.unshift(dados);
+    this.bibliaService.setSaves(this.saves);
+    this.saves = this.bibliaService.getSaves();    
+  }
 
+  historico(){
+    let dados:Object = {};
+    dados['caminho'] = this.livro+" "+this.capitulo+" "+this.versiculo;
+    dados['data'] = moment().format("YYYY-MM-DDTHH:mm:ss");
+    if(this.historics.length > 49){
+      this.historics.pop();
+    }
+    this.historics.unshift(dados);
+    this.bibliaService.setHistorics(this.historics);
+    this.historics = this.bibliaService.getHistorics();    
   }
   calibrar_font(calibrar){
     this.calibracao.hide();    
@@ -54,7 +79,7 @@ export class BibliaComponent implements OnInit {
         maxVersiculo++;
       }
       this.maxVersiculo = maxVersiculo;
-      this.charge();
+      this.charge(true);
       this.calibrando.show();
     }
   }
@@ -87,12 +112,28 @@ export class BibliaComponent implements OnInit {
           } 
         }
         //cálculo tamanho da fonte
+
+        /*
+        * função regra de três
+        *   a = 100%
+        *   b     x%
+        */
+
+        //pega a diferença entre a informação anterior e a próxima|| base (a) da regra de três (lenght)
         let cem = (+sucessor) - (+antercessor);
+        //pega a diferença entre a informação anterior e a atual|| base (b) regra de três (lenght)
         let texto = (+this.texto.length) - (+antercessor);
+        //descobre o valor de x% (lenght) esse valor é o base x% da regra de três (font)
         let porcentagem_length = (texto*100)/cem;
+
+
+        //pega a diferença entre a informação anterior e a próxima|| base (a) regra de três (font)
         let cem_font = (+this.fontSizes[+antercessor]) - (+this.fontSizes[+sucessor]);
+        //decobre o valor de (b) da regra de três esse é a diferença da fonte
         let valor_para_subtrair = (cem_font*porcentagem_length)/100;
+        //Como são inversamente proporcionais (quanto maior o numero de caracteres, menor a fonte) e fiz o calculo pelo antercessor, subtrai do valor do antercessor o cálculo obtido
         this.textoSize = +this.fontSizes[+antercessor]-(+valor_para_subtrair);
+
         if(+sucessor - this.texto.length < this.texto.length - +antercessor){
           //console.log("mais perto do sucessor:"+sucessor+" o antercessor é: "+antercessor);
         }else{
@@ -104,29 +145,29 @@ export class BibliaComponent implements OnInit {
       //console.log("já existe");
       this.textoSize = this.fontSizes[this.texto.length];
     }   
-    return this.textoSize; 
+    return this.textoSize;
   }
   showMenu(){
-    this.mostraMenu = true;    
+    this.mostraMenu = true;        
   } 
-   
-  charge(){
+  mudaVersao(string){
+    this.bibliaService.setVersao(string);
+    this.versao = string;
+    this.book = this.bibliaService.getBook();
+    this.charge();
+  }
+  charge(calibrar = false){
     this.mostraMenu = false;
+    this.mostraMenuLateral = false;
     this.mostraAtalho = false;
-    
-    /* this.livro = this.bibliaService.getLivro();
-    this.capitulo = this.bibliaService.getCapitulo();
-    this.versiculo = this.bibliaService.getVersiculo();
-    this.bibliaService.setMaxCapitulo(this.book[+this.livro].chapters.length);
-    this.maxCapitulo = this.bibliaService.getMaxCapitulo();
-
-    let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
-    let maxVersiculo = 0;
-    for (let [key, value] of Object.entries(versiculos)) {
-      maxVersiculo++;
+    if(!calibrar){
+      this.historico();
+      this.livro = this.bibliaService.getLivro();
+      this.capitulo = this.bibliaService.getCapitulo();
+      this.versiculo = this.bibliaService.getVersiculo();
+      this.maxCapitulo = this.bibliaService.getMaxCapitulo();
+      this.maxVersiculo = this.bibliaService.getMaxVersiculo();
     }
-    this.bibliaService.setMaxVersiculo(maxVersiculo);
-    this.maxVersiculo = this.bibliaService.getMaxVersiculo();   */  
     
     let nomeLivro = this.book[+this.livro].book;   
     if(nomeLivro == "Lamentações de Jeremias"){
@@ -149,7 +190,6 @@ export class BibliaComponent implements OnInit {
     }
     return nova;
   }
-    
   carregarAtalho(string){
     if(!string){
       this.mostraAtalho = false;
@@ -271,16 +311,40 @@ export class BibliaComponent implements OnInit {
   }
   @HostListener('document:keydown', ['$event'])
     handleKeyboardEvent(event: KeyboardEvent) { 
-      if(this.mostraMenu == false && this.mostraAtalho == true){
+      if(this.mostraMenu || this.mostraAtalho || this.mostraMenuLateral == true){
         if(event.key == 'Escape'){
+          this.mostraMenuLateral = false;
+          this.mostraMenu = false;
           this.mostraAtalho = false;
         }
-      }else
-      if(!this.mostraMenu && !this.mostraAtalho){
-        if(event.key == 'c' && event.ctrlKey){
+      }
+      if(!this.mostraMenu || !this.mostraAtalho || !this.mostraMenuLateral){
+        if(event.key == '1'){
+          this.mudaVersao('aa.json'); 
+        }
+        if(event.key == '2'){
+          this.mudaVersao('acf.json');   
+        }
+        if(event.key == '3'){
+          this.mudaVersao('nvi.json');
+        }
+        if(event.key == '4'){
+          this.mudaVersao('ntlh.json');
+        }
+      }
+      
+      if(!this.mostraMenu && !this.mostraAtalho && !this.mostraMenuLateral){
+        if(event.code == 'KeyC' && event.ctrlKey && event.altKey){
           this.calibracao.show();          
         }
-        
+        if(event.key == 's' && event.ctrlKey){
+          this.salvar();          
+          return false;
+        }
+        if(event.key == 'b' && event.ctrlKey){
+          this.bibliaService.setIndice(this.saves);
+          this.mostraMenuLateral = true;
+        }
         if(event.key == 'Enter'){
           if(this.mostraCalibracao && this.passosCalibracao){
             if(this.passosCalibracao == 1){
@@ -295,7 +359,7 @@ export class BibliaComponent implements OnInit {
               }
               this.maxVersiculo = maxVersiculo;
               this.passosCalibracao = 2;
-              this.charge();
+              this.charge(true);
             }else
             if(this.passosCalibracao == 2){
               this.livro = 0;
@@ -309,7 +373,7 @@ export class BibliaComponent implements OnInit {
               }
               this.maxVersiculo = maxVersiculo;
               this.passosCalibracao = 3;
-              this.charge();
+              this.charge(true);
             }else
             if(this.passosCalibracao == 3){
               this.livro = 0;
@@ -323,7 +387,7 @@ export class BibliaComponent implements OnInit {
               }
               this.maxVersiculo = maxVersiculo;
               this.passosCalibracao = 4;
-              this.charge();
+              this.charge(true);
             }else
             if(this.passosCalibracao == 4){
               this.livro = 1;
@@ -337,7 +401,7 @@ export class BibliaComponent implements OnInit {
               }
               this.maxVersiculo = maxVersiculo;
               this.passosCalibracao = 5;
-              this.charge();
+              this.charge(true);
             }else
             if(this.passosCalibracao == 5){
               this.livro = 16;
@@ -350,7 +414,7 @@ export class BibliaComponent implements OnInit {
                 maxVersiculo++;
               }
               this.maxVersiculo = maxVersiculo;
-              this.charge();
+              this.charge(true);
               this.passosCalibracao = 6;
             }else
             if(this.passosCalibracao == 6){
@@ -370,9 +434,10 @@ export class BibliaComponent implements OnInit {
               this.maxVersiculo = this.bibliaService.getMaxVersiculo();
               this.passosCalibracao = null;
               this.calibrando.hide();
-              this.charge();
+              this.charge(true);
               this.fontSizes = this.bibliaService.getFontSizes();
-              location.reload();
+              this.mostraCalibracao = false;
+              //this.router.navigate(['biblia']);
               return false;
             }
           }else{
@@ -450,7 +515,6 @@ export class BibliaComponent implements OnInit {
             if((+this.versiculo-1)>0 && (+this.versiculo-1)<=+this.maxVersiculo){
               this.bibliaService.setVersiculo((+this.versiculo-1));
               this.versiculo = this.bibliaService.getVersiculo();
-              console.log("normal");
               this.charge();
             }
             //Caso o versiculo for menor ou igual a zero precisa chamar o capitulo anterior no último versículo

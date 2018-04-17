@@ -27,6 +27,8 @@
         "caminho_texto_tamanho": 1.25
       }
     },
+    "historics": [],
+    "saves": [],
     "ativo": {
       "versao": "acf.json",
       "tema":"resgate",
@@ -51,5 +53,18 @@
       "tnm.json": "Novo Mundo (tnm)"
     },
     "sizes": {}
+  },
+  "mensagem": {
+    "configuracoes": {
+      "tema_ativo": 1
+    },
+    "ativo": {
+      "titulo": "escolha o título",
+      "texto":"escolha o texto",
+      "margem": 2,
+      "fonte_titulo": 5.399999999999989,
+      "fonte_texto":5.399999999999989
+    },
+    "saves": []
   }
 }

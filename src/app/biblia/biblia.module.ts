@@ -7,6 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AtalhoComponent } from './atalho/atalho.component';
 import { MenuComponent } from './menu/menu.component';
+import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
+
+
 
 @NgModule({
   imports: [
@@ -20,7 +23,8 @@ import { MenuComponent } from './menu/menu.component';
   declarations: [
     BibliaComponent,
     MenuComponent,
-    AtalhoComponent
+    AtalhoComponent,
+    MenuLateralComponent
   ],
   exports:[
     BibliaComponent

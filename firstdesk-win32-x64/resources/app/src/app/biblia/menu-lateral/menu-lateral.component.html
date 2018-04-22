@@ -1,0 +1,12 @@
+<div mdbModal #menuLateral="mdb-modal" class="modal fade left" id="menuModalLeft" tabindex="-1" role="dialog" aria-labelledby="menuLateral" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+    <div class="modal-dialog modal-side modal-top-left" role="document">
+        <div class="modal-content">
+            <div *ngFor="let item of indice; let i = index">              
+                <button class="snip1434" (click)=atualizaVersiculo(item.caminho)>
+                    <i class="fa fa-bookmark-o"></i>
+                    {{ item.nome }}                    
+                </button>            
+            </div>
+        </div>
+    </div> 
+</div>

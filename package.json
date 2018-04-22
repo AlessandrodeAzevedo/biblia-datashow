@@ -2,13 +2,16 @@
   "name": "biblia-datashow",
   "version": "0.0.0",
   "license": "MIT",
+  "main": "main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --iot --env=prod",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "electron": "electron .",
+    "package": "electron-packager . firstdesk"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +30,7 @@
     "angular-vidbg": "0.0.12",
     "chart.js": "^2.5.0",
     "core-js": "^2.4.1",
+    "electron-packager": "^12.0.1",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "jquery": "^3.3.1",
@@ -41,6 +45,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "^4.0.1",
+    "electron": "^1.8.4",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",

@@ -1,0 +1,70 @@
+{
+  "biblia": {
+    "configuracoes": {
+      "tema_ativo": 1
+    },
+    "historico":{
+      "data":"atalho"
+    },
+    "salvos":{
+      "data":"atalho"
+    },
+    "temas": {
+      "resgate": {
+        "background": "movies/defalt.mp4",
+        "texto_type": "AmaticSC",
+        "texto_shadow": {
+          "peso": 10,
+          "horizontal": 10,
+          "vertical": 10
+        },
+        "caminho_texto_type": "AmaticSC",
+        "caminho_texto_shadow": {
+          "peso": 10,
+          "horizontal": 10,
+          "vertical": 10
+        },
+        "caminho_texto_tamanho": 1.25
+      }
+    },
+    "historics": [],
+    "saves": [],
+    "ativo": {
+      "versao": "acf.json",
+      "tema":"resgate",
+      "livro": 0,
+      "fonte":60,
+      "capitulo": {
+        "numero": 0,
+        "maximo": 50
+      },
+      "versiculo": {
+        "numero": 1,
+        "maximo": 31
+      }
+    },
+    "versoes": {
+      "aa.json": "Almeida (aa)",
+      "acf.json": "Almeida corrigida (acf)",
+      "nvi.json": "Nova versão internacional (nvi)",
+      "ntlh.json": "Linguagem de Hoje (ntlh)",
+      "jerusalem.json": "Jerusalém",
+      "avemaria.json": "Ave Maria (avemaria)",
+      "tnm.json": "Novo Mundo (tnm)"
+    },
+    "sizes": {}
+  },
+  "mensagem": {
+    "configuracoes": {
+      "tema_ativo": 1
+    },
+    "ativo": {
+      "titulo": "escolha o título",
+      "texto":"escolha o texto",
+      "margem": 2,
+      "fonte_titulo": 5.399999999999989,
+      "fonte_texto":5.399999999999989
+    },
+    "saves": []
+  }
+}

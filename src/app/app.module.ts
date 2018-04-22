@@ -9,8 +9,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
 import { AppComponent } from './app.component';
-import { MenuComponent } from './biblia/menu/menu.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MenuComponent } from './biblia/menu/menu.component';
 import { StandbyComponent } from './standby/standby.component';
 
 

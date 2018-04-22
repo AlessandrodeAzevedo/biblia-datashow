@@ -1,0 +1,25 @@
+<video autoplay loop [muted]="true">
+    <source src="/assets/media/backgrounds/movies/mensagem.mp4" type="video/mp4">
+</video>
+<div class="content">
+  <div class="container-fluid">
+    <div class="row h100">
+      <div class="col-md-4 h100">
+      </div>
+      <div class="col-md-8 h100">
+        <div class="titulo" [ngStyle]="{'font-size': tituloFont + 'em'}">
+          {{ titulo }}
+        </div>
+        <div class="texto" [ngStyle]="{'font-size': textoFont + 'em','margin-top': margem + 'em'}">
+          <div>
+            {{ texto }}
+          </div>
+        </div>          
+        <div class="logo">
+            <img src="/assets/media/images/color-wh.png" data-toggle="modal" (click)="showMenu()" mdbRippleRadius class="mx-auto d-block" >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<mensagem-menu [menuShow]="mostraMenu" (atualizaMensagem)="charge()"></mensagem-menu>

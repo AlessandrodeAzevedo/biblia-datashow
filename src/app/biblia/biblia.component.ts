@@ -318,7 +318,7 @@ export class BibliaComponent implements OnInit {
           this.mostraAtalho = false;
         }
       }
-      if(!this.mostraMenu || !this.mostraAtalho || !this.mostraMenuLateral){
+      if(!this.mostraMenu && !this.mostraAtalho && !this.mostraMenuLateral){
         if(event.key == '1'){
           this.mudaVersao('aa.json'); 
         }

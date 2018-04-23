@@ -11,10 +11,19 @@ import { Router } from '@angular/router'
   styleUrls: ['./app.component.scss']
 })
 
-
 export class AppComponent {
   title = 'app';
+
+  showFullScreen:boolean = true;
   constructor(private router: Router) { }
+  
+  @HostListener("document:webkitIsFullScreen", ['$event']) fullScreen() {
+    if(!event['view']['document'].webkitIsFullScreen){
+      this.showFullScreen = false;
+    }else{
+      this.showFullScreen = true;
+    }    
+  }
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) { 
       if(event.key == '1' && event.ctrlKey){

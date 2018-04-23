@@ -46,12 +46,10 @@ export class MensagemComponent implements OnInit {
     }
     if(event.ctrlKey){
       if(event.key == 'ArrowUp'){
-        console.log(this.margem);
         this.mensagemService.setMargem((+this.margem+0.02));
         this.margem = this.mensagemService.getMargem();      
       }
       if(event.key == 'ArrowDown'){
-        console.log(this.margem);
         this.mensagemService.setMargem((+this.margem-0.02));
         this.margem = this.mensagemService.getMargem();
       }

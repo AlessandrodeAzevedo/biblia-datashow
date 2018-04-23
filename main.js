@@ -6,7 +6,12 @@ let win = null;
 
 app.on('ready', () => {
 
-    win = new BrowserWindow({ width: 1000, height: 600 });
+    win = new BrowserWindow({ 
+        width: 1000, 
+        height: 600, 
+        resizable: true,
+        fullscreen: true
+     });
      
     win.loadURL(url.format({
       pathname: path.join(__dirname, 'dist/index.html'),
@@ -14,12 +19,11 @@ app.on('ready', () => {
       slashes: true
     }));
     
-
     win.on('closed', () => {
         win = null;
     })
 
-    win.webContents.openDevTools();
+    //win.webContents.openDevTools();
 })
 
 app.on('activate', () => {

@@ -512,13 +512,13 @@ export class BibliaComponent implements OnInit {
             }
           }
           if(event.key == 'ArrowLeft'){
-            if((+this.versiculo-1)>0 && (+this.versiculo-1)<=+this.maxVersiculo){
+            if((+this.versiculo-1)>=0 && (+this.versiculo-1)<=+this.maxVersiculo){
               this.bibliaService.setVersiculo((+this.versiculo-1));
               this.versiculo = this.bibliaService.getVersiculo();
               this.charge();
             }
             //Caso o versiculo for menor ou igual a zero precisa chamar o capitulo anterior no último versículo
-            if((+this.versiculo-1) <=0){
+            if((+this.versiculo-1) <0){
               if((+this.capitulo-1)>=0){
                 this.bibliaService.setCapitulo((+this.capitulo-1));
                 this.capitulo = this.bibliaService.getCapitulo();            

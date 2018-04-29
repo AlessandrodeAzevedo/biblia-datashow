@@ -10,7 +10,7 @@ app.on('ready', () => {
         width: 1000, 
         height: 600, 
         resizable: true,
-        fullscreen: true
+        fullscreen: false
      });
      
     win.loadURL(url.format({
@@ -19,11 +19,12 @@ app.on('ready', () => {
       slashes: true
     }));
     
+    
     win.on('closed', () => {
         win = null;
     })
 
-    //win.webContents.openDevTools();
+    win.webContents.openDevTools();
 })
 
 app.on('activate', () => {

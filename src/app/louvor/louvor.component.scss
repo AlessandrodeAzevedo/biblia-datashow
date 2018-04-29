@@ -1,0 +1,45 @@
+.louvor{
+    width: 100vw;
+    height: 100vh;
+    background-color: #3F3FCC;
+}
+
+.louvor div.texto{
+    height: 75vh;
+}
+
+.logo { 
+    height: 25vh;
+    width:100%;
+    display: flex;
+    justify-content: flex-end;
+    div{
+        display: flex;
+        align-items: center;
+        width: 25%;
+        padding: 10px;
+        img{ 
+            width: 100%;
+            display: block;
+            margin: auto;
+            cursor: pointer;
+        }
+    } 
+}
+
+.texto{
+    div{
+        display: block;
+        margin: auto;
+    }
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 20px #000000;
+    line-height: 1.3em;
+    font-size:4.3em;
+    color:white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+}  

@@ -1,0 +1,29 @@
+<div mdbModal #menuLateral="mdb-modal" class="modal fade right" id="menuModalLeft" tabindex="-1" role="dialog" aria-labelledby="menuLateral" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+    <div class="modal-dialog modal-side modal-top-right" role="document">
+        <div class="modal-content">
+                <p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="fechaMenu()">
+                        <span aria-hidden="true">×</span>
+                        </button>
+                    </p>
+            <div *ngIf="controle('menu')" class="col-md-12 menu">
+                <label><b>Músicas</b></label>
+                    
+                <ul class="list-group">
+                   <li *ngFor="let musica of musicas; let e=odd;"  class="list-group-item">
+                       <a (click)="carregaMusica(musica.titulo,musica.musica)">{{musica.titulo}}</a><i (click)="editar(musica.id,musica.titulo,musica.musica)" class="blue-text fa fa-edit pull-right"></i>
+                    </li>
+                </ul>
+                      
+                <button type="button" class="btn btn-primary waves-light" (click)="novaMusica()" mdbWavesEffect>Nova Música</button>
+            </div>
+            <div *ngIf="controle('musica')" class="col-md-12 musica">
+                <label>Titulo:</label>
+                <input [(ngModel)] = "titulo" type="text" id="titulo" class="form-control" mdbActive>
+                <label>Texto:</label>
+                <textarea rows="40" [(ngModel)] = "texto" id="texto" (keyup) = "mudaTexto()" class="form-control" mdbActive></textarea>
+                <button type="button" class="btn btn-primary waves-light" (click)="salvar()" mdbWavesEffect>Salvar</button>                
+            </div>
+        </div>
+    </div> 
+</div>

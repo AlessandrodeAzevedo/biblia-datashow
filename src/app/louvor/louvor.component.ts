@@ -14,10 +14,10 @@ export class LouvorComponent implements OnInit {
 mostraMenuLateral:boolean = false;
 nome:string = "nome";
 texto:string;
-fontSize:number = 1;
-lineHeight:number = 1.5;
+fontSize:number = this.louvorService.getFont();
+lineHeight:number = this.louvorService.getLineHeight();
 pagina:number = 0;
-musica:string = "Escolha uma <br> música";
+musica:string;
 
 showMenuLateral(){
   if(this.mostraMenuLateral){
@@ -35,8 +35,12 @@ charge(value){
     this.musica = value;
     this.mostraMenuLateral = false;    
   }
-  let maxPagina = this.musica.split("<br><br><br>").length-1;
-  if(this.pagina > maxPagina){
+  if((this.musica).indexOf("<br><br><br>") != -1){
+    let maxPagina = this.musica.split("<br><br><br>").length-1;
+    if(this.pagina > maxPagina){
+      this.pagina = 0;
+    }
+  }else{
     this.pagina = 0;
   }
   let trecho = this.musica.split("<br><br><br>");
@@ -50,7 +54,6 @@ constructor(private louvorService:LouvorService ) { }
     if(this.louvorService.getAtivo()){
       this.musica = this.louvorService.getAtivo()["musica"];
     }
-    console.log(this.louvorService.getAtivo());
     this.charge('no');
     /* var file = new File(["Hello, world!"], "hello world.txt", {type: "text/plain;charset=utf-8"});
     saveAs(file); */
@@ -81,22 +84,26 @@ constructor(private louvorService:LouvorService ) { }
     }
     if(event.key == 'ArrowUp' && event.ctrlKey && !event.shiftKey){
       if(this.fontSize < 500){
-        this.fontSize += 0.05;        
+        this.fontSize += 0.05;     
+        this.louvorService.setFont(this.fontSize);
       }      
     }
     if(event.key == 'ArrowDown' && event.ctrlKey && !event.shiftKey){
       if(this.fontSize > 0){
         this.fontSize -= 0.05;        
+        this.louvorService.setFont(this.fontSize);
       }      
     }
     if(event.key == 'ArrowUp' && event.ctrlKey && event.shiftKey){
       if(this.lineHeight < 500){
         this.lineHeight += 0.05;
+        this.louvorService.setLineHeight(this.lineHeight);
       }      
     }
     if(event.key == 'ArrowDown' && event.ctrlKey && event.shiftKey){
       if(this.lineHeight > 0){
         this.lineHeight -= 0.05;
+        this.louvorService.setLineHeight(this.lineHeight);
       }      
     }
     if(event.key == 'Escape'){

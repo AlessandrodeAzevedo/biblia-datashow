@@ -45,5 +45,9 @@ export class AppComponent {
       if(event.key == 'Escape'){
         this.showFullScreen = true;        
       }
+      if(event.keyCode == 68 && event.shiftKey && event.altKey){
+        localStorage.clear();
+        window.location.reload();
+      }
     }
 }

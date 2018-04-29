@@ -18,10 +18,10 @@
                 <button type="button" class="btn btn-primary waves-light" (click)="novaMusica()" mdbWavesEffect>Nova Música</button>
             </div>
             <div *ngIf="controle('musica')" class="col-md-12 musica">
-                <label>Titulo:</label>
-                <input [(ngModel)] = "titulo" type="text" id="titulo" class="form-control" mdbActive>
-                <label>Texto:</label>
-                <textarea rows="40" [(ngModel)] = "texto" id="texto" (keyup) = "mudaTexto()" class="form-control" mdbActive></textarea>
+                <label for="titulo">Titulo:</label>
+                <input name='titulo' [(ngModel)] = "titulo" type="text" id="titulo" class="form-control" mdbActive>
+                <label for='texto'>Texto:</label>
+                <textarea name="texto" rows="40" [(ngModel)] = "texto" id="texto" (keyup) = "mudaTexto()" class="form-control" mdbActive></textarea>
                 <button type="button" class="btn btn-primary waves-light" (click)="salvar()" mdbWavesEffect>Salvar</button>                
             </div>
         </div>

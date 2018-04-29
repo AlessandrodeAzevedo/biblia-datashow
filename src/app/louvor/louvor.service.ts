@@ -11,6 +11,7 @@ export class LouvorService {
   sizes:Array<any>;
   autoincrement:string;
   ativo:string;
+  lineHeight:number;
   
   constructor() { 
     localStorage.louvor = localStorage.louvor || JSON.stringify(require('../../assets/JSON/louvor.json'));
@@ -20,6 +21,7 @@ export class LouvorService {
     this.musicas = this.louvor['louvor']['musicas'];
     this.autoincrement = this.louvor['louvor']['autoincrement'];
     this.ativo = this.louvor['louvor']['ativo']['musica'];
+    this.lineHeight = this.louvor['louvor']['ativo']['lineheight'];
   }
   atualizaStorage(){
     localStorage.louvor = JSON.stringify(this.louvor);
@@ -33,13 +35,26 @@ export class LouvorService {
   getMusica(id){
     return this.musicas[id];
   }
+  getFont(){
+    return this.fonte;    
+  }
+  getLineHeight(){
+    return this.lineHeight;
+  }
+
   setAtivo(titulo:string,musica:string){
     this.louvor['louvor']['ativo']['musica'] = {"titulo":titulo,"musica":musica};
     this.ativo = this.louvor['louvor']['ativo']['musica'];
     this.atualizaStorage();
   }
-  setFontSize(id,font){
-    this.louvor['louvor']['ativo']['musica'][id]['font'] = font;
+  setLineHeight(tamanho){
+    this.louvor['louvor']['ativo']['lineheight'] = tamanho;
+    this.lineHeight = this.louvor['louvor']['ativo']['lineheight'];
+    this.atualizaStorage();
+  }
+  setFont(font){
+    this.louvor['louvor']['ativo']['fonte'] = font;
+    this.fonte = this.louvor['louvor']['ativo']['fonte'];
     this.atualizaStorage();
   }
   setMusicas(id:number=null,titulo:string,musica:string){

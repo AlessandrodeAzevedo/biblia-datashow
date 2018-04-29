@@ -7,7 +7,9 @@
       },
       "temas": {},
       "ativo": {
-          "musica":{}
+          "fonte":1,
+          "lineheight":1,
+          "musica":{"musica":"Escolha uma <br> música"}
       },
       "sizes": {}
     }

@@ -1,3 +1,4 @@
+import { LouvorComponent } from './louvor/louvor.component';
 import { MensagemComponent } from './mensagem/mensagem.component';
 import { StandbyComponent } from './standby/standby.component';
 import { BibliaComponent } from './biblia/biblia.component';
@@ -8,6 +9,7 @@ const routes: Routes = [
   { path: 'biblia', component: BibliaComponent },
   { path: 'standby', component: StandbyComponent },
   { path: 'mensagem', component: MensagemComponent },
+  { path: 'louvor', component: LouvorComponent },
   { path: '', redirectTo: '/biblia', pathMatch: 'full' },  
 ];
 

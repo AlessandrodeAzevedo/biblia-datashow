@@ -1,0 +1,14 @@
+<div class="louvor content">
+    <div class="container-fluid">
+      <div class="row">
+          <!-- <div class="col-12 texto" [ngStyle]="{'font-size': getfont() + 'em'}"><div [innerHTML]="texto"></div></div>   -->    
+          <div class="col-12 texto"><div [ngStyle]="{'font-size': fontSize + 'em', 'line-height': lineHeight + 'em'}" [innerHTML]="texto"></div></div>  
+      </div>  
+      <div class="row">
+          <div class="logo">
+              <div><img src="assets/media/images/color-wh.png" data-toggle="modal" (click)="showMenuLateral()" mdbRippleRadius class="mx-auto d-block" ></div>
+          </div>      
+      </div>
+      <louvor-menu [menuLateralShow]="mostraMenuLateral" [atalhoShow]="mostraAtalho" (atualizaTexto)="charge($event)"></louvor-menu>    
+    </div>
+</div>

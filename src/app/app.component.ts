@@ -38,5 +38,9 @@ export class AppComponent {
         this.router.navigate(['mensagem']);
         return false;
       }
+      if(event.key == '4' && event.ctrlKey){
+        this.router.navigate(['louvor']);
+        return false;
+      }
     }
 }

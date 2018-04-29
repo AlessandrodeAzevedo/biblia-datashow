@@ -1,3 +1,4 @@
+import { LouvorModule } from './louvor/louvor.module';
 import { MensagemModule } from './mensagem/mensagem.module';
 import { BibliaModule } from './biblia/biblia.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,6 +25,7 @@ import { StandbyComponent } from './standby/standby.component';
     BrowserModule,
     FormsModule,
     BibliaModule,
+    LouvorModule,
     MensagemModule,
     AppRoutingModule
   ],

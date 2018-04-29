@@ -38,5 +38,8 @@ export class AppComponent {
         this.router.navigate(['mensagem']);
         return false;
       }
+      if(event.key == 'Escape'){
+        this.showFullScreen = true;        
+      }
     }
 }

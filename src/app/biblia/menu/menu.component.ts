@@ -96,15 +96,4 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.chargeSelectLivros();        
   }
-
-  @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) { 
-    if(event.key == 'Shift' ){
-      if(this.menu.isShown){
-        this.menu.hide();
-      }else{
-        this.menu.show();        
-      }
-    }    
-  }
 }

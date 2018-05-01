@@ -8,17 +8,33 @@ import { HostListener } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+  
+  constructor(private louvorService : LouvorService) { }
+  
   @ViewChild('menuLateral') public menuLateral;
   @Input() menuLateralShow:boolean;
   @Output() atualizaTexto = new EventEmitter();
 
+
   texto:string;
   titulo:string;
+  busca:string;
   musicas:Array<any> = this.arr(this.louvorService.getMusicas());
   navigate:string = 'menu';
   id:number = null;
 
-  constructor(private louvorService : LouvorService) { }
+  buscar(){
+    let filtro = this.busca.toLowerCase();
+    let msks = this.arr(this.louvorService.getMusicas());
+    let resultado = [];
+    for(let i=0;i<msks.length;i++){
+      let corresponde = msks[i].titulo.toLowerCase().indexOf(filtro) >= 0;
+      if(corresponde){
+        resultado.push(msks[i]);
+      }            
+    }
+    this.musicas = resultado;
+  }
 
   controle(value){
     if(value == this.navigate){
@@ -59,6 +75,12 @@ export class MenuComponent implements OnInit {
     this.louvorService.setAtivo(titulo,musica);
     this.atualizaTexto.emit(musica);
     this.atualizaTexto.emit('page');
+    this.menuLateral.hide();
+    this.busca = null;
+    this.id = null;
+    this.titulo = null;
+    this.texto = null;
+    this.musicas = this.arr(this.louvorService.getMusicas());
   }
 
   mudaTexto(){

@@ -7,6 +7,7 @@
                         </button>
                     </p>
             <div *ngIf="controle('menu')" class="col-md-12 menu">
+                <input name='busca' [(ngModel)] = "busca" placeholder="Digite para buscar uma música" type="text" id="busca" (keyup)="buscar()" class="form-control" mdbActive>
                 <label><b>Músicas</b></label>
                     
                 <ul class="list-group">

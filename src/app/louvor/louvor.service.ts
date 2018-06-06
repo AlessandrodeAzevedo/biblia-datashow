@@ -1,4 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class LouvorService {
@@ -13,7 +14,7 @@ export class LouvorService {
   ativo:string;
   lineHeight:number;
   
-  constructor() { 
+  constructor(private http: HttpClient) { 
     localStorage.louvor = localStorage.louvor || JSON.stringify(require('../../assets/JSON/louvor.json'));
     
     this.louvor =  JSON.parse(localStorage.louvor);
@@ -23,6 +24,15 @@ export class LouvorService {
     this.ativo = this.louvor['louvor']['ativo']['musica'];
     this.lineHeight = this.louvor['louvor']['ativo']['lineheight'];
   }
+
+  buscaMusicaIdVagalume(id){
+    return this.http.get('https://api.vagalume.com.br/search.artmus?apikey=c0d5c8b8530eeec7328de716d59f08fc&id='+id+'');
+  }
+
+  buscaVagalume(busca){
+    return this.http.get('https://api.vagalume.com.br/search.artmus?q='+busca+'&limit=10');    
+  }
+  
   atualizaStorage(){
     localStorage.louvor = JSON.stringify(this.louvor);
   }

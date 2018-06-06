@@ -9,12 +9,13 @@ import { HostListener } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   
-  constructor(private louvorService : LouvorService) { }
+  ngOnInit(){}
   
+  constructor(private louvorService : LouvorService) { }
+
   @ViewChild('menuLateral') public menuLateral;
   @Input() menuLateralShow:boolean;
   @Output() atualizaTexto = new EventEmitter();
-
 
   texto:string;
   titulo:string;
@@ -22,6 +23,28 @@ export class MenuComponent implements OnInit {
   musicas:Array<any> = this.arr(this.louvorService.getMusicas());
   navigate:string = 'menu';
   id:number = null;
+  
+  buscaVagalume(){
+    this.louvorService.buscaVagalume(this.busca).subscribe(resposta => {
+      let resultado = [];
+      resposta['response']['docs'].forEach(function (value) {
+        if(value.title){
+          let musica = [];
+          musica['id'] = value.id;
+          musica['titulo'] = value.band+" - "+value.title;
+          musica['vagalume'] = true;
+          resultado.push(musica);              
+        }
+      });
+      this.atualizaMusicas(resultado);      
+    }, err => {
+        console.log('Erro ao fazer busca: ', err);
+    });
+  }
+
+  atualizaMusicas(resultado){
+    this.musicas = resultado;
+  }
 
   buscar(){
     let filtro = this.busca.toLowerCase();
@@ -44,12 +67,25 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  editar(id,titulo,texto){
-    this.id = id;
-    this.titulo = titulo;
-    this.texto = texto.replace(/<br>/g, '\n');
+  editar(id,titulo,texto,vagalume = false){
+    if(vagalume){
+      this.louvorService.buscaMusicaIdVagalume(id).subscribe(resposta => {
+        let artista = resposta['response']['docs'][0]['band'];
+        let titulo = resposta['response']['docs'][0]['title'];
+        let letra = resposta['response']['docs'][0]['letra'];
+        this.titulo = artista+" - "+titulo;
+        this.texto = letra.replace(/\n\n/g, '\n\n\n');        
+      }, err => {
+          console.log('Erro ao buscar musica: ', err);
+      });
+    }else{
+      this.id = id;
+      this.titulo = titulo;
+      this.texto = texto.replace(/<br>/g, '\n');
+    }
     this.navigate = 'musica';
   }
+
   salvar(){
     if(!this.titulo || !this.texto){
       return false;
@@ -61,12 +97,14 @@ export class MenuComponent implements OnInit {
     this.titulo = null;
     this.texto = null;
   }  
+
   voltar(){
     this.id = null;
     this.titulo = null;
     this.texto = null;
     this.navigate = 'menu';
-  }  
+  }
+
   novaMusica(){
     this.navigate = 'musica';
   }
@@ -92,10 +130,7 @@ export class MenuComponent implements OnInit {
       obj[key]['id'] = key;
       return obj[key]; });
   }
-  ngOnInit() {
-    
-  }
-
+  
   fechaMenu(){
     if(this.navigate != 'menu'){
       this.navigate = 'menu';
@@ -107,6 +142,7 @@ export class MenuComponent implements OnInit {
     this.texto = null;
     this.atualizaTexto.emit('page');
   }
+
   ngOnChanges() {
     if(this.menuLateralShow){
       this.menuLateral.show();

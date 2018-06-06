@@ -12,8 +12,15 @@
                     
                 <ul class="list-group">
                    <li *ngFor="let musica of musicas; let e=odd;"  class="list-group-item">
-                       <a (click)="carregaMusica(musica.titulo,musica.musica)">{{musica.titulo}}</a><i (click)="editar(musica.id,musica.titulo,musica.musica)" class="blue-text fa fa-edit pull-right"></i>
+                        <a *ngIf='musica?.vagalume' >{{musica.titulo}}</a>
+                        <i *ngIf='musica?.vagalume' (click)="editar(musica.id,musica.titulo,musica.musica,musica.vagalume)" class="blue-text fa fa-cloud-download pull-right"></i>
+                        <a *ngIf='musica?.vagalume == null' (click)="carregaMusica(musica.titulo,musica.musica)">{{musica.titulo}}</a>
+                        <i *ngIf='musica?.vagalume == null' (click)="editar(musica.id,musica.titulo,musica.musica)" class="blue-text fa fa-edit pull-right"></i>
                     </li>
+                    <li *ngIf='musicas?.length === 0' class="list-group-item">
+                        <a *ngIf='busca?.length > 0' (click)='buscaVagalume()'>Buscar no <img src="../../assets/media/images/vagalume.png" width="100px"></a>
+                        <!-- <a *ngIf='busca?.length == 0'>não tem busca</a> -->
+                     </li>                    
                 </ul>
                       
                 <button type="button" class="btn btn-primary waves-light" (click)="novaMusica()" mdbWavesEffect>Nova Música</button>
@@ -23,7 +30,8 @@
                 <input name='titulo' [(ngModel)] = "titulo" type="text" id="titulo" class="form-control" mdbActive>
                 <label for='texto'>Texto:</label>
                 <textarea name="texto" rows="40" [(ngModel)] = "texto" id="texto" (keyup) = "mudaTexto()" class="form-control" mdbActive></textarea>
-                <button type="button" class="btn btn-primary waves-light" (click)="salvar()" mdbWavesEffect>Salvar</button>                
+                <button type="button" class="btn btn-primary waves-light" (click)="salvar()" mdbWavesEffect>Salvar</button>
+                <button type="button" class="btn blue-grey lighten-4" (click)="fechaMenu()" mdbWavesEffect>Cancelar</button>                
             </div>
         </div>
     </div> 

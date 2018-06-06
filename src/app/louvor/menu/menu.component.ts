@@ -17,6 +17,7 @@ export class MenuComponent implements OnInit {
   @Input() menuLateralShow:boolean;
   @Output() atualizaTexto = new EventEmitter();
 
+  erro:string;
   texto:string;
   titulo:string;
   busca:string;
@@ -36,8 +37,13 @@ export class MenuComponent implements OnInit {
           resultado.push(musica);              
         }
       });
-      this.atualizaMusicas(resultado);      
+      if(resultado.length > 0){
+        this.atualizaMusicas(resultado);      
+      }else{
+        this.erro = "Sua busca não retornou resultados!";
+      }
     }, err => {
+        this.erro = "Erro ao realizar busca!";
         console.log('Erro ao fazer busca: ', err);
     });
   }
@@ -47,6 +53,7 @@ export class MenuComponent implements OnInit {
   }
 
   buscar(){
+    this.erro = null;
     let filtro = this.busca.toLowerCase();
     let msks = this.arr(this.louvorService.getMusicas());
     let resultado = [];
@@ -115,6 +122,7 @@ export class MenuComponent implements OnInit {
     this.atualizaTexto.emit('page');
     this.menuLateral.hide();
     this.busca = null;
+    this.erro = null;
     this.id = null;
     this.titulo = null;
     this.texto = null;

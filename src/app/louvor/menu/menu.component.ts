@@ -50,21 +50,34 @@ export class MenuComponent implements OnInit {
         console.log('Erro ao fazer busca: ', err);
     });
   }
-  adicionaAtalho(id,titulo,texto){
-    this.louvorService.setMusicas(id,titulo,texto.replace(/(\r\n|\n\r|\r|\n)/g, '<br>'),true);
-    if(this.selecionados){      
-      this.buscaSelecionadas();
+
+  carregaLista(){
+    if(this.selecionados){
+      let musicas = this.musicas;
+      let selecionadas = [];
+      for(let i=0;i<musicas.length;i++){
+         if(musicas[i].selected != null && musicas[i].selected != false){
+            selecionadas.push(musicas[i]);
+         }                
+      }
+      this.musicas = selecionadas;
     }else{
       this.musicas = this.arr(this.louvorService.getMusicas());
     }
+    if(this.busca.length > 0){
+      this.buscar();
+    }
+  }
+
+  adicionaAtalho(id,titulo,texto){
+    this.louvorService.setMusicas(id,titulo,texto.replace(/(\r\n|\n\r|\r|\n)/g, '<br>'),true);
+    this.musicas = this.arr(this.louvorService.getMusicas());
+    this.carregaLista();
   }
   tiraAtalho(id,titulo,texto){
     this.louvorService.setMusicas(id,titulo,texto.replace(/(\r\n|\n\r|\r|\n)/g, '<br>'));
-    if(this.selecionados){      
-      this.buscaSelecionadas();
-    }else{
-      this.musicas = this.arr(this.louvorService.getMusicas());
-    }
+    this.musicas = this.arr(this.louvorService.getMusicas());
+    this.carregaLista();
   }
   atualizaMusicas(resultado){
     this.musicas = resultado;
@@ -73,12 +86,13 @@ export class MenuComponent implements OnInit {
   habilitaSelecionados(value){
     if(value){
       this.selecionados = true;
-      this.buscaSelecionadas();
+      this.carregaLista();
     }else{
       this.selecionados = false;
-      this.musicas = this.arr(this.louvorService.getMusicas());
+      this.carregaLista();
     }
   }
+
   buscaSelecionadas(){
     let musicas = this.arr(this.louvorService.getMusicas());
     let selecionadas = [];
@@ -91,9 +105,13 @@ export class MenuComponent implements OnInit {
   }
 
   buscar(){
+    if(this.busca.length == 0){
+      this.musicas = this.arr(this.louvorService.getMusicas());
+      this.carregaLista();
+    }
     this.erro = null;
     let filtro = this.busca.toLowerCase();
-    let msks = this.arr(this.louvorService.getMusicas());
+    let msks = this.musicas;
     let resultado = [];
     for(let i=0;i<msks.length;i++){
       let corresponde = msks[i].titulo.toLowerCase().indexOf(filtro) >= 0;
@@ -141,10 +159,11 @@ export class MenuComponent implements OnInit {
     }
     this.louvorService.setMusicas(this.id,this.titulo,this.texto.replace(/(\r\n|\n\r|\r|\n)/g, '<br>'));
     this.navigate = 'menu';
-    this.musicas = this.arr(this.louvorService.getMusicas());
     this.id = null;
     this.titulo = null;
     this.texto = null;
+    this.selecionados = null;
+    this.carregaLista();
   }  
 
   voltar(){
@@ -172,7 +191,6 @@ export class MenuComponent implements OnInit {
   }
 
   mudaTexto(){
-    //this.louvorService.setMusicas(this.texto);
     this.atualizaTexto.emit(this.texto.replace(/(\r\n|\n\r|\r|\n)/g, '<br>'));
   }
   arr(obj){
@@ -190,6 +208,7 @@ export class MenuComponent implements OnInit {
     this.id = null;
     this.titulo = null;
     this.texto = null;
+    this.selecionados = false;
     this.atualizaTexto.emit('page');
   }
 
@@ -203,6 +222,12 @@ export class MenuComponent implements OnInit {
         this.atualizaMusicas(this.arr(this.louvorService.getMusicas()));
       }
       this.menuLateral.show();
+    }
+  }
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) { 
+    if(event.key == 'Escape'){
+      this.selecionados = false;
     }
   }
 }

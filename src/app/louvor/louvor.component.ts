@@ -12,6 +12,7 @@ export class LouvorComponent implements OnInit {
   
 //  let dialog = require('electron').remote;
 mostraMenuLateral:boolean = false;
+mostraMenuLateralEnter:boolean = false;
 nome:string = "nome";
 texto:string;
 fontSize:number = this.louvorService.getFont();
@@ -19,7 +20,12 @@ lineHeight:number = this.louvorService.getLineHeight();
 pagina:number = 0;
 musica:string;
 
-showMenuLateral(){
+showMenuLateral(enter = false){
+  if(enter){
+    this.mostraMenuLateralEnter = true;
+  }else{
+    this.mostraMenuLateralEnter = false;
+  }
   if(this.mostraMenuLateral){
     this.mostraMenuLateral = false;     
   }else{
@@ -105,6 +111,9 @@ constructor(private louvorService:LouvorService ) { }
         this.lineHeight -= 0.05;
         this.louvorService.setLineHeight(this.lineHeight);
       }      
+    }
+    if(event.key == 'Enter'){
+      this.showMenuLateral(true);
     }
     if(event.key == 'Escape'){
       this.mostraMenuLateral = false;

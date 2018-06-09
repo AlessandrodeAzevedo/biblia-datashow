@@ -67,13 +67,13 @@ export class LouvorService {
     this.fonte = this.louvor['louvor']['ativo']['fonte'];
     this.atualizaStorage();
   }
-  setMusicas(id:number=null,titulo:string,musica:string){
+  setMusicas(id:number=null,titulo:string,musica:string,selected:boolean = false){
     if(!id){
       this.autoincrement += 1;
       id = +this.autoincrement;
       this.louvor['louvor']['autoincrement'] = this.autoincrement;
     }
-    this.louvor['louvor']['musicas'][id] = {"titulo":titulo,"musica":musica};
+    this.louvor['louvor']['musicas'][id] = {"titulo":titulo,"musica":musica,"selected":selected};
     this.musicas = this.louvor['louvor']['musicas'];
     this.atualizaStorage();
   }

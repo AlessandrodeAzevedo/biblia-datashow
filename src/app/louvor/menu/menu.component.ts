@@ -15,12 +15,15 @@ export class MenuComponent implements OnInit {
 
   @ViewChild('menuLateral') public menuLateral;
   @Input() menuLateralShow:boolean;
+  @Input() menuLateralEnter:boolean;
   @Output() atualizaTexto = new EventEmitter();
 
   erro:string;
   texto:string;
   titulo:string;
   busca:string;
+  selecionados:boolean = false;
+  checkboxValue:boolean;
   musicas:Array<any> = this.arr(this.louvorService.getMusicas());
   navigate:string = 'menu';
   id:number = null;
@@ -47,9 +50,44 @@ export class MenuComponent implements OnInit {
         console.log('Erro ao fazer busca: ', err);
     });
   }
-
+  adicionaAtalho(id,titulo,texto){
+    this.louvorService.setMusicas(id,titulo,texto.replace(/(\r\n|\n\r|\r|\n)/g, '<br>'),true);
+    if(this.selecionados){      
+      this.buscaSelecionadas();
+    }else{
+      this.musicas = this.arr(this.louvorService.getMusicas());
+    }
+  }
+  tiraAtalho(id,titulo,texto){
+    this.louvorService.setMusicas(id,titulo,texto.replace(/(\r\n|\n\r|\r|\n)/g, '<br>'));
+    if(this.selecionados){      
+      this.buscaSelecionadas();
+    }else{
+      this.musicas = this.arr(this.louvorService.getMusicas());
+    }
+  }
   atualizaMusicas(resultado){
     this.musicas = resultado;
+  }
+
+  habilitaSelecionados(value){
+    if(value){
+      this.selecionados = true;
+      this.buscaSelecionadas();
+    }else{
+      this.selecionados = false;
+      this.musicas = this.arr(this.louvorService.getMusicas());
+    }
+  }
+  buscaSelecionadas(){
+    let musicas = this.arr(this.louvorService.getMusicas());
+    let selecionadas = [];
+    for(let i=0;i<musicas.length;i++){
+       if(musicas[i].selected != null && musicas[i].selected != false){
+          selecionadas.push(musicas[i]);
+       }                
+    }
+    this.musicas = selecionadas;
   }
 
   buscar(){
@@ -59,8 +97,12 @@ export class MenuComponent implements OnInit {
     let resultado = [];
     for(let i=0;i<msks.length;i++){
       let corresponde = msks[i].titulo.toLowerCase().indexOf(filtro) >= 0;
-      if(corresponde){
-        resultado.push(msks[i]);
+
+      if(this.selecionados && msks[i].selected == true && corresponde){      
+        resultado.push(msks[i]);        
+      }
+      if(!this.selecionados && corresponde){      
+        resultado.push(msks[i]);        
       }            
     }
     this.musicas = resultado;
@@ -153,6 +195,13 @@ export class MenuComponent implements OnInit {
 
   ngOnChanges() {
     if(this.menuLateralShow){
+      if(this.menuLateralEnter){
+        this.selecionados = true;
+        this.buscaSelecionadas();
+      }else{
+        this.musicas = null;
+        this.atualizaMusicas(this.arr(this.louvorService.getMusicas()));
+      }
       this.menuLateral.show();
     }
   }

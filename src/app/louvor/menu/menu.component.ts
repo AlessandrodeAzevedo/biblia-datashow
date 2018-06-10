@@ -23,11 +23,29 @@ export class MenuComponent implements OnInit {
   titulo:string;
   busca:string;
   selecionados:boolean = false;
+  online:boolean = false; 
   checkboxValue:boolean;
   musicas:Array<any> = this.arr(this.louvorService.getMusicas());
   navigate:string = 'menu';
   id:number = null;
   
+  checkOnline() { 
+    this.louvorService.testeConexao().subscribe(resposta => { 
+      this.online = true; 
+      console.log(true+" - 1");
+      return true; 
+    }, err => { 
+      if(err.status){ 
+        console.log(true+" - 2");
+        this.online = true; 
+        return true; 
+      } 
+      this.online = false; 
+      console.log(false);
+      return false; 
+    });     
+  }; 
+ 
   buscaVagalume(){
     this.louvorService.buscaVagalume(this.busca).subscribe(resposta => {
       let resultado = [];
@@ -108,6 +126,9 @@ export class MenuComponent implements OnInit {
     if(this.busca.length == 0){
       this.musicas = this.arr(this.louvorService.getMusicas());
       this.carregaLista();
+    }
+    if(this.busca.length >= 4){
+      this.checkOnline();
     }
     this.erro = null;
     let filtro = this.busca.toLowerCase();
@@ -228,6 +249,9 @@ export class MenuComponent implements OnInit {
   handleKeyboardEvent(event: KeyboardEvent) { 
     if(event.key == 'Escape'){
       this.selecionados = false;
+    }
+    if(event.key == 'Enter'){
+      this.checkOnline();
     }
   }
 }

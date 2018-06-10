@@ -33,6 +33,10 @@ export class LouvorService {
     return this.http.get('https://api.vagalume.com.br/search.artmus?q='+busca+'&limit=10');    
   }
   
+  testeConexao(){ 
+    return this.http.get('http://www.google.com');     
+  } 
+  
   atualizaStorage(){
     localStorage.louvor = JSON.stringify(this.louvor);
   }

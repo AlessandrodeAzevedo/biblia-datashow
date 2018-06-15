@@ -69,7 +69,7 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  carregaLista(){
+  carregaLista(fromBusca:boolean = false){
     if(this.selecionados){
       let musicas = this.musicas;
       let selecionadas = [];
@@ -82,7 +82,7 @@ export class MenuComponent implements OnInit {
     }else{
       this.musicas = this.arr(this.louvorService.getMusicas());
     }
-    if(this.busca.length > 0){
+    if(this.busca.length > 0 && !fromBusca){
       this.buscar();
     }
   }
@@ -125,8 +125,10 @@ export class MenuComponent implements OnInit {
   buscar(){
     if(this.busca.length == 0){
       this.musicas = this.arr(this.louvorService.getMusicas());
-      this.carregaLista();
+      this.carregaLista(true);
+      return false;
     }
+    this.carregaLista(true);
     if(this.busca.length >= 4){
       this.checkOnline();
     }

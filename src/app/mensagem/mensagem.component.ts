@@ -11,6 +11,7 @@ export class MensagemComponent implements OnInit {
 
   constructor(private mensagemService: MensagemService) {  }
   
+  logo:string = this.mensagemService.getLogo();
   titulo:string = this.mensagemService.getTitulo();
   tituloFont:number = this.mensagemService.getTituloFont();
   texto:string = this.mensagemService.getTexto();

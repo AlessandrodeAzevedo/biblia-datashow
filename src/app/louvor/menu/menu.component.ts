@@ -1,5 +1,5 @@
 import { LouvorService } from './../louvor.service';
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { HostListener } from '@angular/core';
 
 @Component({
@@ -28,26 +28,25 @@ export class MenuComponent implements OnInit {
   musicas:Array<any> = this.arr(this.louvorService.getMusicas());
   navigate:string = 'menu';
   id:number = null;
-  
+
   checkOnline() { 
-    this.louvorService.testeConexao().subscribe(resposta => { 
+    this.louvorService.testeConexao().subscribe(
+    (data:Response) => {
       this.online = true; 
-      console.log(true+" - 1");
       return true; 
     }, err => { 
       if(err.status){ 
-        console.log(true+" - 2");
         this.online = true; 
         return true; 
       } 
       this.online = false; 
-      console.log(false);
       return false; 
     });     
   }; 
  
   buscaVagalume(){
-    this.louvorService.buscaVagalume(this.busca).subscribe(resposta => {
+    this.louvorService.buscaVagalume(this.busca).subscribe(
+    (resposta:Response) => {
       let resultado = [];
       resposta['response']['docs'].forEach(function (value) {
         if(value.title){

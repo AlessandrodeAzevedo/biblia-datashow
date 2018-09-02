@@ -16,6 +16,7 @@ export class BibliaComponent implements OnInit {
   @ViewChild('calibrando') public calibrando;
 
   book:JSON = this.bibliaService.getBook();
+  logo:string = this.bibliaService.getLogo();;
   texto:string;
   textoSize:number = this.bibliaService.getTextoSize();
   fontSizes:Array<any> = this.bibliaService.getFontSizes();
@@ -34,7 +35,7 @@ export class BibliaComponent implements OnInit {
   mostraCalibracao:boolean = false;
   passosCalibracao:number;
 
-  constructor(private bibliaService: BibliaService,private router: Router) { }
+  constructor(private bibliaService: BibliaService,private router: Router) {  }
  
   ngOnInit() { 
     this.charge();    

@@ -6,6 +6,8 @@
 /tmp
 /out-tsc
 /firstdesk-win32-x64
+/firstdesk-win32-x642
+/aot
 
 # dependencies
 /node_modules

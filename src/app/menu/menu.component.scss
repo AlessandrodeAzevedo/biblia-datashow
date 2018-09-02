@@ -1,0 +1,18 @@
+img{ 
+    width: 60%;
+    display: block;
+    margin: auto;
+    cursor: pointer;
+}
+
+div.file {
+    position: relative;
+    overflow: hidden;
+  }
+  input {
+    position: absolute;
+    font-size: 50px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+  }

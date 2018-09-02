@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 @Injectable()
 export class MensagemService {
   app:JSON;
+  logo:string;
   titulo:string;
   tituloFont:number;
   texto:string;
@@ -12,6 +13,7 @@ export class MensagemService {
 
   constructor() { 
     localStorage.app = localStorage.app || JSON.stringify(require('../../assets/JSON/app.json'));
+    localStorage.configuracao = localStorage.configuracao || JSON.stringify(require('../../assets/JSON/configuracao.json'));
     this.app =  JSON.parse(localStorage.app);
     this.titulo = this.app['mensagem']['ativo']['titulo'];
     this.tituloFont = this.app['mensagem']['ativo']['titulo_font'];
@@ -27,6 +29,9 @@ export class MensagemService {
  /* 
   * Getters 
   */
+  getLogo(){
+    return JSON.parse(localStorage.configuracao)['logo'];
+  }
   getMargem(){
     return this.margem;
   }

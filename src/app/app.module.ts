@@ -1,6 +1,7 @@
 import { LouvorModule } from './louvor/louvor.module';
 import { MensagemModule } from './mensagem/mensagem.module';
 import { BibliaModule } from './biblia/biblia.module';
+import { MenuModule } from './menu/menu.module';
 import { BrowserModule } from '@angular/platform-browser';
 //import { NgModule } from '@angular/core';
 
@@ -11,14 +12,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { MenuComponent } from './biblia/menu/menu.component';
 import { StandbyComponent } from './standby/standby.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StandbyComponent,
+    StandbyComponent
   ],
   imports: [
     MDBBootstrapModule.forRoot(),
@@ -27,6 +27,7 @@ import { StandbyComponent } from './standby/standby.component';
     BibliaModule,
     LouvorModule,
     MensagemModule,
+    MenuModule,
     AppRoutingModule,
     HttpClientModule
   ],

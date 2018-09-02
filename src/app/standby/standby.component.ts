@@ -1,3 +1,4 @@
+import { StandbyService } from './standby.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./standby.component.scss']
 })
 export class StandbyComponent implements OnInit {
+  
+  logo:string = this.standbyService.getLogo();
 
-  constructor() { }
+  constructor(private standbyService:StandbyService ) { }
 
   ngOnInit() {
   }

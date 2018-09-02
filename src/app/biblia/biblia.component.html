@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col endereco"><div>{{ endereco }}</div></div>
         <div class="col logo">
-            <img src="assets/media/images/color-wh.png" data-toggle="modal" (click)="showMenu()" mdbRippleRadius class="mx-auto d-block" >
+            <img src="{{ logo }}" data-toggle="modal" (click)="showMenu()" mdbRippleRadius class="mx-auto d-block" >
         </div>      
     </div>
     <biblia-atalho [menuShow]="mostraMenu" [atalhoShow]="mostraAtalho" [calibracaoShow]="mostraCalibracao" (mudaTexto)="carregarAtalho($event)"></biblia-atalho>

@@ -37,7 +37,8 @@ video{
     display: flex;
     align-items: center;
     img{ 
-        width: 60%;
+        max-width: 60%;
+        max-height: 90%;
         display: block;
         margin: auto;
         cursor: pointer;

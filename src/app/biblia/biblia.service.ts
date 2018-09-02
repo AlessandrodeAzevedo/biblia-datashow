@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class BibliaService {
@@ -7,6 +7,7 @@ export class BibliaService {
   resolution:string;
   tema:string;
   fonte:number;
+  logo:string;
   versao:string;
   livro:number;
   capitulo:number;
@@ -22,6 +23,7 @@ export class BibliaService {
   constructor() {
     
     localStorage.app = localStorage.app || JSON.stringify(require('../../assets/JSON/app.json'));
+    localStorage.configuracao = localStorage.configuracao || JSON.stringify(require('../../assets/JSON/configuracao.json'));
 
     this.app =  JSON.parse(localStorage.app);
     
@@ -58,6 +60,9 @@ export class BibliaService {
   /* 
    * Getters 
    */
+  getLogo(){
+    return JSON.parse(localStorage.configuracao)['logo'];
+  }
   getIndice(){
     return this.indice;
     //return JSON.parse(localStorage.fontSizes || '{"500":"2.55","5":"8.0"}');

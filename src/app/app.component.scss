@@ -4,18 +4,3 @@
     font-weight: normal;
     src: url(assets/fonts/AmaticSC-Regular.ttf);
 }
-
-.full{
-    position: fixed;
-    top: 0;
-    right: 0;
-    button{
-        background:none;
-        border:none;
-        text-shadow: black 0.1em 0.1em 0.2em;
-        i{
-            cursor: pointer;
-            color: #ffffff;
-        }
-    } 
-}

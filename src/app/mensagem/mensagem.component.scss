@@ -23,7 +23,7 @@ font-family: AmaticSC;
 .titulo{
     font-size: 6em;    
 }
-.logo { 
+/* .logo { 
     position: absolute;
     display: table;
     vertical-align: bottom;
@@ -33,9 +33,25 @@ font-family: AmaticSC;
     padding: 20px;
     float: left;
     text-align: right;
+
     img{
         cursor:pointer;
         width: 100%;
+    }
+} */
+.logo { 
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 25vh;
+    display: flex;
+    align-items: center;    
+    justify-content: flex-end;
+    img{ 
+        max-width: 60%;
+        max-height: 90%;
+        display: block;
+        cursor: pointer;
     }
 }
 

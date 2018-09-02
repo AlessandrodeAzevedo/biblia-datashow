@@ -9,7 +9,7 @@
       </div>  
       <div class="row">
           <div class="logo">
-              <div><img src="assets/media/images/color-wh.png" data-toggle="modal" (click)="showMenuLateral()" mdbRippleRadius class="mx-auto d-block" ></div>
+              <div><img src="{{ logo }}" data-toggle="modal" (click)="showMenuLateral()" mdbRippleRadius class="mx-auto d-block" ></div>
           </div>      
       </div>
       <louvor-menu [menuLateralShow]="mostraMenuLateral" [menuLateralEnter]="mostraMenuLateralEnter" [atalhoShow]="mostraAtalho" (atualizaTexto)="charge($event)"></louvor-menu>    

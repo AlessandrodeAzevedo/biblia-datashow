@@ -1,0 +1,31 @@
+<div mdbModal #menuGeral="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myMenuGeralLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="menuGeral.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Configurações</h4>
+      </div>
+      <div class="modal-body ">
+          <form class="md-form">
+            <div class="file-field">
+                <div class="mb-4">
+                    <img *ngIf="localUrl == null" src="{{ logo }}" class="img-fluid" alt="example placeholder">
+                    <img [src]="localUrl" *ngIf="localUrl" class="imgPlaceholder">
+                </div>
+                <div class="file btn btn-mdb-color btn-rounded d-flex justify-content-center">
+                  Escolher uma nova imagem
+                  <input type="file" name="file" (change)="novaImagem($event)"/>
+                </div>
+            </div>            
+          </form>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="alterarImagem()" mdbWavesEffect>Close</button> -->
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="alterarImagem()" mdbWavesEffect>Aplicar mudanças</button>
+      </div>
+    </div>
+  </div>
+</div>

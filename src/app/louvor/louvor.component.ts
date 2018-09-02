@@ -1,7 +1,6 @@
 import { LouvorService } from './louvor.service';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
-import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-louvor',
@@ -10,9 +9,10 @@ import { saveAs } from 'file-saver';
 })
 export class LouvorComponent implements OnInit {
   
-//  let dialog = require('electron').remote;
 mostraMenuLateral:boolean = false;
+mostraAtalho:boolean = false;
 mostraMenuLateralEnter:boolean = false;
+logo:string = this.louvorService.getLogo();
 nome:string = "nome";
 texto:string;
 fontSize:number = this.louvorService.getFont();
@@ -51,7 +51,6 @@ charge(value){
   }
   let trecho = this.musica.split("<br><br><br>");
   this.texto = trecho[this.pagina];
-  //this.mostraMenuLateral = false;
 }
 
 constructor(private louvorService:LouvorService ) { }
@@ -60,17 +59,7 @@ constructor(private louvorService:LouvorService ) { }
     if(this.louvorService.getAtivo()){
       this.musica = this.louvorService.getAtivo()["musica"];
     }
-    this.charge('no');
-    /* var file = new File(["Hello, world!"], "hello world.txt", {type: "text/plain;charset=utf-8"});
-    saveAs(file); */
-    //this.playPingPong();
-  }
-
-  public playPingPong() {
-    /* if(this.electronService.isElectronApp) {
-        let pong: string = this.electronService.ipcRenderer.sendSync('ping');
-        console.log(pong);
-    } */
+    this.charge('no');    
   }
 
   @HostListener('document:keydown', ['$event'])

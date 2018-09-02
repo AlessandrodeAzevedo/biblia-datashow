@@ -9,6 +9,7 @@ export class LouvorService {
   configuracoes:Array<any>;
   tema:string;
   fonte:number;
+  logo:string;
   sizes:Array<any>;
   autoincrement:string;
   ativo:string;
@@ -16,7 +17,7 @@ export class LouvorService {
   
   constructor(private http: HttpClient) { 
     localStorage.louvor = localStorage.louvor || JSON.stringify(require('../../assets/JSON/louvor.json'));
-    
+    localStorage.configuracao = localStorage.configuracao || JSON.stringify(require('../../assets/JSON/configuracao.json'));
     this.louvor =  JSON.parse(localStorage.louvor);
     this.fonte = this.louvor['louvor']['ativo']['fonte'];
     this.musicas = this.louvor['louvor']['musicas'];
@@ -30,15 +31,21 @@ export class LouvorService {
   }
 
   buscaVagalume(busca){
-    return this.http.get('https://api.vagalume.com.br/search.artmus?q='+busca+'&limit=10');    
+    let anwser = this.http.get('https://api.vagalume.com.br/search.artmus?q='+busca+'&limit=10');    
+    return anwser;
   }
   
   testeConexao(){ 
-    return this.http.get('http://www.google.com');     
+    let anwser = this.http.get('http://www.google.com');     
+    return anwser;
   } 
   
   atualizaStorage(){
     localStorage.louvor = JSON.stringify(this.louvor);
+  }
+
+  getLogo(){
+    return JSON.parse(localStorage.configuracao)['logo'];
   }
   getAtivo(){
     return this.ativo;

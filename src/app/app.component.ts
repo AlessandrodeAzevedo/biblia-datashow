@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { HostListener } from '@angular/core';
-import { OnInit, ViewChild, ElementRef } from '@angular/core';
-import * as $ from 'jquery';
-import * as moment from 'moment';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,16 +11,8 @@ import { Router } from '@angular/router'
 export class AppComponent {
   title = 'app';
 
-  showFullScreen:boolean = true;
   constructor(private router: Router) { }
   
-  @HostListener("document:webkitIsFullScreen", ['$event']) fullScreen() {
-    if(!event['view']['document'].webkitIsFullScreen){
-      this.showFullScreen = false;
-    }else{
-      this.showFullScreen = true;
-    }    
-  }
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) { 
       if(event.key == '1' && event.ctrlKey){
@@ -41,9 +30,6 @@ export class AppComponent {
       if(event.key == '4' && event.ctrlKey){
         this.router.navigate(['louvor']);
         return false;
-      }
-      if(event.key == 'Escape'){
-        this.showFullScreen = true;        
       }
       if(event.keyCode == 68 && event.shiftKey && event.altKey){
         localStorage.clear();

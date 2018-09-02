@@ -1,5 +1,2 @@
 <router-outlet></router-outlet>
-<div class="full">
-    <button *ngIf="showFullScreen" onclick="javascript:document.body.webkitRequestFullScreen();" (click)="fullScreen()"><i class="fa fa-window-maximize"></i></button>
-    <button *ngIf="!showFullScreen" onclick="javascript:document.webkitCancelFullScreen();" (click)="fullScreen()"><i class="fa fa-window-minimize"></i></button>
-</div>
+<app-menu></app-menu>

@@ -8,6 +8,7 @@
 /firstdesk-win32-x64
 /firstdesk-win32-x642
 /aot
+/e2e
 
 # dependencies
 /node_modules

@@ -19,6 +19,7 @@ export class MenuComponent implements OnInit {
   @Output() atualizaTexto = new EventEmitter();
 
   erro:string;
+  selected:boolean;
   texto:string;
   titulo:string;
   busca:string;
@@ -41,7 +42,7 @@ export class MenuComponent implements OnInit {
       } 
       this.online = false; 
       return false; 
-    });     
+    });
   }; 
  
   buscaVagalume(){
@@ -156,13 +157,15 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  editar(id,titulo,texto,vagalume = false){
+  editar(id,titulo,texto,selected,vagalume = false){
     if(vagalume){
       this.louvorService.buscaMusicaIdVagalume(id).subscribe(resposta => {
         let artista = resposta['response']['docs'][0]['band'];
         let titulo = resposta['response']['docs'][0]['title'];
         let letra = resposta['response']['docs'][0]['letra'];
         this.titulo = artista+" - "+titulo;
+        this.selected = null;
+        this.busca = null;
         this.texto = letra.replace(/\n\n/g, '\n\n\n');        
       }, err => {
           console.log('Erro ao buscar musica: ', err);
@@ -170,6 +173,7 @@ export class MenuComponent implements OnInit {
     }else{
       this.id = id;
       this.titulo = titulo;
+      this.selected = selected;
       this.texto = texto.replace(/<br>/g, '\n');
     }
     this.navigate = 'musica';
@@ -179,13 +183,13 @@ export class MenuComponent implements OnInit {
     if(!this.titulo || !this.texto){
       return false;
     }
-    this.louvorService.setMusicas(this.id,this.titulo,this.texto.replace(/(\r\n|\n\r|\r|\n)/g, '<br>'));
+    this.louvorService.setMusicas(this.id,this.titulo,this.texto.replace(/(\r\n|\n\r|\r|\n)/g, '<br>'),this.selected);
     this.navigate = 'menu';
     this.id = null;
     this.titulo = null;
     this.texto = null;
-    this.selecionados = null;
-    this.carregaLista();
+    this.selecionados = false;
+    this.carregaLista();    
   }  
 
   voltar(){

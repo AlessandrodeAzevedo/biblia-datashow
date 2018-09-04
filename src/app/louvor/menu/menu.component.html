@@ -32,15 +32,16 @@
                         <i *ngIf='musica?.selected == false || musica?.selected == null' (click)="adicionaAtalho(musica.id,musica.titulo,musica.musica)" class="fa fa-bookmark grey-text text-lighten-2"></i>
                         <i *ngIf='musica?.selected' (click)="tiraAtalho(musica.id,musica.titulo,musica.musica)" class="fa fa-bookmark red-text text-lighten-2"></i>
                         <a *ngIf='musica?.vagalume' > {{musica.titulo}}</a>
-                        <i *ngIf='musica?.vagalume' (click)="editar(musica.id,musica.titulo,musica.musica,musica.vagalume)" class="blue-text fa fa-cloud-download pull-right"></i>
+                        <i *ngIf='musica?.vagalume' (click)="editar(musica.id,musica.titulo,musica.musica,false,musica.vagalume)" class="blue-text fa fa-cloud-download pull-right"></i>
                         <a *ngIf='musica?.vagalume == null' (click)="carregaMusica(musica.titulo,musica.musica)"> {{musica.titulo}}</a>
-                        <i *ngIf='musica?.vagalume == null' (click)="editar(musica.id,musica.titulo,musica.musica)" class="blue-text fa fa-edit pull-right"></i>
+                        <i *ngIf='musica?.vagalume == null' (click)="editar(musica.id,musica.titulo,musica.musica,musica.selected)" class="blue-text fa fa-edit pull-right"></i>
                     </li>                                        
                 </ul>
                 <br>                
             </div>
             <div *ngIf="controle('musica')" class="col-md-12 musica">
                 <label for="titulo">Titulo:</label>
+                <input name='selected' [(ngModel)] = "selected" type="hidden">
                 <input name='titulo' [(ngModel)] = "titulo" type="text" id="titulo" class="form-control" mdbActive>
                 <label for='texto'>Texto:</label>
                 <textarea name="texto" rows="40" [(ngModel)] = "texto" id="texto" (keyup) = "mudaTexto()" class="form-control" mdbActive></textarea>

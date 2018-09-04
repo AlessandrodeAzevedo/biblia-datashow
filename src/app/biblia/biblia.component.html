@@ -14,7 +14,7 @@
         </div>      
     </div>
     <biblia-atalho [menuShow]="mostraMenu" [atalhoShow]="mostraAtalho" [calibracaoShow]="mostraCalibracao" (mudaTexto)="carregarAtalho($event)"></biblia-atalho>
-    <biblia-menu [menuShow]="mostraMenu" [atalhoShow]="mostraAtalho" (atualizaTexto)="charge($event)"></biblia-menu>
+    <biblia-menu [menuShow]="mostraMenu" [atalhoShow]="mostraAtalho" (atualizaTexto)="charge(false,$event)"></biblia-menu>
     <biblia-menu-lateral [menuLateralShow]="mostraMenuLateral" [menuShow]="mostraMenu" [atalhoShow]="mostraAtalho" (atualizaTexto)="charge()"></biblia-menu-lateral>
   </div>
 </div>

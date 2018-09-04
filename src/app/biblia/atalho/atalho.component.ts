@@ -130,7 +130,6 @@ export class AtalhoComponent implements OnInit {
           let maxCapitulo = this.book[livro].chapters.length;
           if(capitulo > maxCapitulo){
             this.error = "Capítulo não encontrado";
-            console.log("Capítulo não encontrado");
             return false;
           }
           //Verifica se existe o versículo solicitado
@@ -142,7 +141,6 @@ export class AtalhoComponent implements OnInit {
           }
           if(versiculo > maxVersiculo){
             this.error = "Versículo não encontrado";
-            console.log("Versículo não encontrado");
             return false;
           }
           this.enviarFechar(this.atalhoInput);

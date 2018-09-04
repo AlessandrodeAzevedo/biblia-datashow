@@ -19,6 +19,7 @@ export class MenuComponent implements OnInit {
   livro:number = this.bibliaService.getLivro();
   maxVersiculo:number = this.bibliaService.getMaxVersiculo();
   maxCapitulo:number = this.bibliaService.getMaxCapitulo();
+  error:string;
   livros:Array<any> = [];  
   
   verificaNumero(){
@@ -53,21 +54,29 @@ export class MenuComponent implements OnInit {
 
   novoTexto(string){
     if(string){
+      if((this.capitulo) > this.maxCapitulo){
+        this.error = "Capítulo não encontrado";
+        return false;
+      }
+      //Verifica se existe o versículo solicitado
+      if(this.versiculo > this.maxVersiculo){
+        this.error = "Versículo não encontrado";
+        return false;
+      }
       this.bibliaService.setCapitulo(+this.capitulo-1);
       this.bibliaService.setVersiculo(this.versiculo);  
       this.bibliaService.setVersao(this.versao);
       this.bibliaService.setLivro(this.livro);
       this.menu.hide();
     }
+    this.error = null;
     this.atualizaTexto.emit(string);
   }
-
   atualizaCapitulo(){
     this.capitulo = 1;
     this.maxCapitulo = this.book[this.livro].chapters.length;
     this.atualizaVersiculo();
   }
-
   atualizaVersiculo(){
     this.versiculo = 1;
     let versiculos = this.book[this.livro].chapters[+this.capitulo-1][this.capitulo];
@@ -78,6 +87,7 @@ export class MenuComponent implements OnInit {
     this.maxVersiculo = maxVersiculo;
   }
   fechaMenu(){
+    this.error = null;
     this.novoTexto(false);
     this.menu.hide();
   }

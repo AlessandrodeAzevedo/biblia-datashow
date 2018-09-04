@@ -157,17 +157,18 @@ export class BibliaComponent implements OnInit {
     this.book = this.bibliaService.getBook();
     this.charge();
   }
-  charge(calibrar = false){
+  charge(calibrar = false,menu = false){
     this.mostraMenu = false;
     this.mostraMenuLateral = false;
     this.mostraAtalho = false;
-    if(!calibrar){
+    if(!calibrar || menu){
       this.historico();
       this.livro = this.bibliaService.getLivro();
       this.capitulo = this.bibliaService.getCapitulo();
       this.versiculo = this.bibliaService.getVersiculo();
       this.maxCapitulo = this.bibliaService.getMaxCapitulo();
       this.maxVersiculo = this.bibliaService.getMaxVersiculo();
+      this.book = this.bibliaService.getBook();
     }
     
     let nomeLivro = this.book[+this.livro].book;   
@@ -276,7 +277,6 @@ export class BibliaComponent implements OnInit {
       //Verifica se existe o capitulo solicitado
       let maxCapitulo = this.book[livro].chapters.length;
       if(capitulo > maxCapitulo){
-        console.log("Capítulo não encontrado");
         return false;
       }
       //Verifica se existe o versículo solicitado
@@ -288,7 +288,6 @@ export class BibliaComponent implements OnInit {
         maxVersiculo++;
       }
       if(versiculo > maxVersiculo){
-        console.log("Versículo não encontrado");
         return false;
       }
       //Realiza as modificações e solicita um novo carregamento

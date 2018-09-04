@@ -31,7 +31,10 @@ export class AtalhoComponent implements OnInit {
   novoTexto(string){
     this.mudaTexto.emit(string);
   }
-  retira_acentos(palavra) {    
+  retira_acentos(palavra) {
+    if(palavra.toLowerCase() == 'jó'){
+      return palavra;
+    }    
     let com_acento = "áàãâäéèêëíìîïóòõôöúùûüçÁÀÃÂÄÉÈÊËÍÌÎÏÓÒÕÖÔÚÙÛÜÇ";
     let sem_acento = "aaaaaeeeeiiiiooooouuuucAAAAAEEEEIIIIOOOOOUUUUC";
     let nova = "";
@@ -53,7 +56,7 @@ export class AtalhoComponent implements OnInit {
   handleKeyboardEvent(event: KeyboardEvent) { 
     if(event.key == 'Enter' && !this.menuShow && !this.calibracaoShow){
       if(this.atalho.isShown && this.atalhoInput){
-        let livro = this.atalhoInput.split(" ")[0] || 0;
+        let livro:any = this.atalhoInput.split(" ")[0] || 0;
         livro = this.retira_acentos(livro);
         livro = livro.toLowerCase();
         let capitulo = this.atalhoInput.split(" ")[1] || 1;
@@ -76,7 +79,7 @@ export class AtalhoComponent implements OnInit {
         if(livro == 'ed'  || livro == 'esdras'){              livro = 14;}
         if(livro == 'ne'  || livro == 'neemias'){             livro = 15;}
         if(livro == 'et'  || livro == 'ester'){               livro = 16;}
-        if(livro == 'jo'  ){                                  livro = 17;}
+        if(livro == 'jó'  ){                                  livro = 17;}
         if(livro == 'sl'  || livro == 'salmos'){              livro = 18;}
         if(livro == 'pv'  || livro == 'proverbios'){          livro = 19;}
         if(livro == 'ec'  || livro == 'eclesiastes'){         livro = 20;}
@@ -101,7 +104,7 @@ export class AtalhoComponent implements OnInit {
         if(livro == 'mt'  || livro == 'mateus'){              livro = 39;}
         if(livro == 'mc'  || livro == 'marcos'){              livro = 40;}
         if(livro == 'lc'  || livro == 'lucas'){               livro = 41;}
-        if(livro == 'joa' || livro == 'joao'){                livro = 42;}
+        if(livro == 'jo'  || livro == 'joao'){                livro = 42;}
         if(livro == 'at'  || livro == 'atos'){                livro = 43;}
         if(livro == 'rm'  || livro == 'romanos'){             livro = 44;}
         if(livro == '1co' || livro == '1corintios'){          livro = 45;}

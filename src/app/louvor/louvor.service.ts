@@ -88,4 +88,10 @@ export class LouvorService {
     this.musicas = this.louvor['louvor']['musicas'];
     this.atualizaStorage();
   }
+
+  deleteMusica(id){
+      delete this.louvor['louvor']['musicas'][id];
+      this.musicas = this.louvor['louvor']['musicas'];
+      this.atualizaStorage();
+  }
 }

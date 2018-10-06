@@ -192,6 +192,21 @@ export class MenuComponent implements OnInit {
     this.carregaLista();    
   }  
 
+  excluir(){
+    if(!this.id){
+      return false;
+    }
+    if(confirm("Tem certeza que quer deletar a musica: "+this.titulo)) {
+      this.louvorService.deleteMusica(this.id);
+      this.navigate = 'menu';
+      this.id = null;
+      this.titulo = null;
+      this.texto = null;
+      this.selecionados = false;
+      this.carregaLista();
+    }
+  }  
+
   voltar(){
     this.id = null;
     this.titulo = null;

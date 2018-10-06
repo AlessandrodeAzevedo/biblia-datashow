@@ -34,6 +34,7 @@ export class BibliaComponent implements OnInit {
   saves:Array<any> = this.bibliaService.getSaves();
   mostraCalibracao:boolean = false;
   passosCalibracao:number;
+  primeiraUtilizacao:boolean = this.bibliaService.getPrimeiraUtilizacao();
 
   constructor(private bibliaService: BibliaService,private router: Router) {  }
  
@@ -323,15 +324,18 @@ export class BibliaComponent implements OnInit {
       }
       if(!this.mostraMenu && !this.mostraAtalho && !this.mostraMenuLateral){
         if(event.key == '1'){
-          this.mudaVersao('aa.json'); 
+          this.mudaVersao('ara.json'); 
         }
         if(event.key == '2'){
-          this.mudaVersao('acf.json');   
+          this.mudaVersao('aa.json'); 
         }
         if(event.key == '3'){
-          this.mudaVersao('nvi.json');
+          this.mudaVersao('acf.json');   
         }
         if(event.key == '4'){
+          this.mudaVersao('nvi.json');
+        }
+        if(event.key == '5'){
           this.mudaVersao('ntlh.json');
         }
       }
@@ -439,13 +443,17 @@ export class BibliaComponent implements OnInit {
               this.calibrando.hide();
               this.charge(true);
               this.fontSizes = this.bibliaService.getFontSizes();
-              this.mostraCalibracao = false;
               //this.router.navigate(['biblia']);
               return false;
             }
           }else{
-            this.mostraCalibracao = false;
-            this.mostraAtalho = true;
+            console.log(this.mostraCalibracao);
+            console.log(this.mostraAtalho);
+            if(this.mostraCalibracao){
+              this.mostraCalibracao = false;
+            }else{
+              this.mostraAtalho = true;
+            }
           }
         }
         if(!this.mostraCalibracao && !this.passosCalibracao){

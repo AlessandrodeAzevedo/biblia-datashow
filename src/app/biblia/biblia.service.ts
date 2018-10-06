@@ -19,6 +19,7 @@ export class BibliaService {
   versoes:Array<any>;
   historics:Array<any>;
   saves:Array<any>;
+  primeiraUtilizacao:boolean;
   
   constructor() {
     
@@ -60,6 +61,9 @@ export class BibliaService {
   /* 
    * Getters 
    */
+  getPrimeiraUtilizacao(){
+    return JSON.parse(localStorage.configuracao)['primeira_utilizacao'];
+  }
   getLogo(){
     return JSON.parse(localStorage.configuracao)['logo'];
   }

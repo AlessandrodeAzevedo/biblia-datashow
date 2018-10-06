@@ -61,9 +61,10 @@
     "ativo": {
       "titulo": "escolha o título",
       "texto":"escolha o texto",
-      "margem": 2,
-      "fonte_titulo": 5.399999999999989,
-      "fonte_texto":5.399999999999989
+      "margem": 0.05,
+      "fonte_titulo": 10,
+      "fonte_texto":10,
+      "texto_font":10
     },
     "saves": []
   }

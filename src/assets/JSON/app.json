@@ -30,7 +30,7 @@
     "historics": [],
     "saves": [],
     "ativo": {
-      "versao": "acf.json",
+      "versao": "ara.json",
       "tema":"resgate",
       "livro": 0,
       "fonte":60,
@@ -44,13 +44,11 @@
       }
     },
     "versoes": {
-      "aa.json": "Almeida (aa)",
+      "ara.json": "Almeida revista e atualizada (ara)",
       "acf.json": "Almeida corrigida (acf)",
+      "aa.json": "Almeida (aa)",
       "nvi.json": "Nova versão internacional (nvi)",
-      "ntlh.json": "Linguagem de Hoje (ntlh)",
-      "jerusalem.json": "Jerusalém",
-      "avemaria.json": "Ave Maria (avemaria)",
-      "tnm.json": "Novo Mundo (tnm)"
+      "ntlh.json": "Linguagem de Hoje (ntlh)"
     },
     "sizes": {}
   },

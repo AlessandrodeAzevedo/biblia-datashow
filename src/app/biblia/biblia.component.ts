@@ -331,10 +331,10 @@ export class BibliaComponent implements OnInit {
           this.mudaVersao('ara.json'); 
         }
         if(event.key == '2'){
-          this.mudaVersao('aa.json'); 
+          this.mudaVersao('acf.json'); 
         }
         if(event.key == '3'){
-          this.mudaVersao('acf.json');   
+          this.mudaVersao('aa.json');
         }
         if(event.key == '4'){
           this.mudaVersao('nvi.json');
@@ -451,8 +451,6 @@ export class BibliaComponent implements OnInit {
               return false;
             }
           }else{
-            console.log(this.mostraCalibracao);
-            console.log(this.mostraAtalho);
             if(this.mostraCalibracao){
               this.mostraCalibracao = false;
             }else{

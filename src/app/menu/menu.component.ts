@@ -12,7 +12,8 @@ export class MenuComponent implements OnInit {
   @ViewChild('menuGeral') public menuGeral;
   logo:string = this.menuService.getLogo();
   imagem:String;
-  localUrl:any[];
+  tokenVagalume = this.menuService.getTokenVagalume();
+  localUrl:string;
   constructor(private menuService: MenuService) {}  
   ngOnInit(){
   }
@@ -25,8 +26,13 @@ export class MenuComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
     }
   }
-  alterarImagem(){
-    this.menuService.setLogo(this.localUrl);    
+  
+  aplicarMudancas(){
+    if(!this.localUrl){
+      this.localUrl = this.logo;
+    }
+    this.menuService.setLogo(this.localUrl);
+    this.menuService.setTokenVagalume(this.tokenVagalume);
   }
 
   @HostListener('document:keydown', ['$event'])

@@ -7,6 +7,7 @@ export class MenuService {
   
   configuracao:JSON;
   logo:string;
+  tokenVagalume:string;
   
   constructor() { 
     localStorage.configuracao = localStorage.configuracao || JSON.stringify(require('../../assets/JSON/configuracao.json'));
@@ -23,13 +24,24 @@ export class MenuService {
   getLogo(){
     return this.logo;
   }
+
+  getTokenVagalume(){
+    return JSON.parse(localStorage.configuracao)['token_vagalume'];
+  }
+
  /* 
   * Setters 
   */
-   setLogo(value){
+  setLogo(value){
     this.logo = value;
     this.configuracao['logo'] = value;
     this.atualizaStorage();
     window.location.reload();
+  }
+
+  setTokenVagalume(value){
+    this.tokenVagalume = value;
+    this.configuracao['token_vagalume'] = value;
+    this.atualizaStorage();
   }
 }

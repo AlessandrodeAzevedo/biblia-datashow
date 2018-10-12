@@ -27,21 +27,33 @@ export class LouvorService {
   }
 
   buscaMusicaIdVagalume(id){
-    return this.http.get('https://api.vagalume.com.br/search.artmus?apikey=c0d5c8b8530eeec7328de716d59f08fc&id='+id+'');
+    if(JSON.parse(localStorage.configuracao)['token_vagalume']){
+      return this.http.get('https://api.vagalume.com.br/search.artmus?apikey='+JSON.parse(localStorage.configuracao)['token_vagalume']+'&id='+id+'');
+    }else{
+      return false;
+    }
   }
 
   buscaVagalume(busca){
-    let anwser = this.http.get('https://api.vagalume.com.br/search.artmus?q='+busca+'&limit=10');    
-    return anwser;
+    if(JSON.parse(localStorage.configuracao)['token_vagalume']){
+      let anwser = this.http.get('https://api.vagalume.com.br/search.artmus?q='+busca+'&limit=10');    
+      return anwser;
+    }
   }
   
   testeConexao(){ 
-    let anwser = this.http.get('http://www.google.com');     
-    return anwser;
+    if(JSON.parse(localStorage.configuracao)['token_vagalume']){
+      let anwser = this.http.get('https://www.google.com');     
+      return anwser;
+    }
   } 
   
   atualizaStorage(){
     localStorage.louvor = JSON.stringify(this.louvor);
+  }
+
+  getTokenVagalume(){
+    return JSON.parse(localStorage.configuracao)['token_vagalume'];
   }
 
   getLogo(){

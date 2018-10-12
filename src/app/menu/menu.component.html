@@ -17,14 +17,16 @@
                 </div>
                 <div class="file btn btn-mdb-color btn-rounded d-flex justify-content-center">
                   Escolher uma nova imagem
-                  <input type="file" name="file" (change)="novaImagem($event)"/>
+                  <input type="file" name="file" (change)="novaImagem($event)" class="imagem"/>
                 </div>
-            </div>            
+            </div> 
           </form>
+          <label for="exampleForm2">Api key Vagalume</label>
+          <input [(ngModel)] = "tokenVagalume" type="text" class="form-control">
       </div>
       <div class="modal-footer">
         <!-- <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="alterarImagem()" mdbWavesEffect>Close</button> -->
-        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="alterarImagem()" mdbWavesEffect>Aplicar mudanças</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="aplicarMudancas()" mdbWavesEffect>Aplicar mudanças</button>
       </div>
     </div>
   </div>

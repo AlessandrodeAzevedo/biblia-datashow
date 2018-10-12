@@ -11,7 +11,7 @@ let animator = new AnimationBuilder();
 })
 export class MensagemComponent implements OnInit {
 
-  constructor(private elementRef: ElementRef,private mensagemService: MensagemService) {  }
+  constructor(private elementRef: ElementRef,private mensagemService: MensagemService) {}
   
   logo:string = this.mensagemService.getLogo();
   titulo:string = this.mensagemService.getTitulo();
@@ -73,5 +73,8 @@ export class MensagemComponent implements OnInit {
     }
     if(event.key == 'ArrowRight'){}
     if(event.key == 'ArrowLeft'){}
+    if(event.key == 'Escape'){
+      this.mostraMenu = false;
+    }
   }
 }

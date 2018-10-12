@@ -1,4 +1,4 @@
-<div mdbModal #menuLateral="mdb-modal" class="modal fade right tamanho" id="menuModalLeft" tabindex="-1" role="dialog" aria-labelledby="menuLateral" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+<div mdbModal #menuLateral="mdb-modal" class="modal fade right" id="menuModalLeft" tabindex="-1" role="dialog" aria-labelledby="menuLateral" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}" style="overflow-y: auto">
     <div class="modal-dialog modal-side modal-top-right" role="document">
         <div class="modal-content">
             <p>
@@ -8,7 +8,7 @@
                 <i *ngIf='selecionados == false' class="pointer fa fa-bookmark grey-text text-lighten-2 left" (click)="habilitaSelecionados(true)" style="padding-left:10px;"></i>                
                 <i  *ngIf='selecionados' (click)="habilitaSelecionados()" class="pointer fa fa-bookmark red-text text-lighten-2 left" style="padding-left:10px;"></i>                
             </p>
-            <div *ngIf="controle('menu')" class="col-md-12 menu tamanho md-form">
+            <div *ngIf="controle('menu')" class="col-md-12 menu md-form" style="overflow-y: auto">
                 <br>
                 <div class="row">
                     <div class="col">

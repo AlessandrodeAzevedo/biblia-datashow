@@ -1,6 +1,6 @@
 
 {
     "logo": "assets/media/images/icon-datashow.png",
-    "primeira_utilizacao": null,
+    "primeira_utilizacao": true,
     "token_vagalume": null
 }

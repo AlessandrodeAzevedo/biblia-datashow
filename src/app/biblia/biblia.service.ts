@@ -20,6 +20,7 @@ export class BibliaService {
   historics:Array<any>;
   saves:Array<any>;
   primeiraUtilizacao:boolean;
+  configuracoes:JSON;
   
   constructor() {
     
@@ -62,7 +63,9 @@ export class BibliaService {
    * Getters 
    */
   getPrimeiraUtilizacao(){
-    return JSON.parse(localStorage.configuracao)['primeira_utilizacao'];
+    if(JSON.parse(localStorage.configuracao)['primeira_utilizacao']){
+      return true;
+    }
   }
   getLogo(){
     return JSON.parse(localStorage.configuracao)['logo'];
@@ -185,6 +188,12 @@ export class BibliaService {
   setSaves(value){
     this.app['biblia']['saves'] = value;
     this.historics = this.app['biblia']['saves'];
-    this.atualizaStorage();    
+    this.atualizaStorage();
+  }
+  setPrimeiraUtilizacao(value){
+    this.configuracoes = JSON.parse(localStorage.configuracao);
+    this.configuracoes['primeira_utilizacao'] = value;
+    localStorage.configuracao = JSON.stringify(this.configuracoes);
+    return value;
   }
 }

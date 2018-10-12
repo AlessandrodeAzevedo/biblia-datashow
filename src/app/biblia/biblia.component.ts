@@ -43,8 +43,15 @@ export class BibliaComponent implements OnInit {
 
   ngOnInit() { 
     animator.setDuration(500).setType('bounceInLeft').show(this.elementRef.nativeElement);
-    this.charge();    
+    this.charge();
   }
+
+  ngAfterViewInit() {
+    if(this.primeiraUtilizacao){
+      this.calibracao.show();
+    }
+  }
+
   salvar(){
     let dados:Object = {};
     dados['caminho'] = this.livro+" "+(+this.capitulo+1)+" "+this.versiculo;
@@ -87,6 +94,8 @@ export class BibliaComponent implements OnInit {
       this.maxVersiculo = maxVersiculo;
       this.charge(true);
       this.calibrando.show();
+      this.bibliaService.setPrimeiraUtilizacao(false)
+      this.primeiraUtilizacao = false;
     }
   }
   getfont(){
@@ -181,7 +190,7 @@ export class BibliaComponent implements OnInit {
       nomeLivro = "Lamentações";
     }
     this.texto = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)][+this.versiculo];
-    this.endereco = nomeLivro+" "+(+this.capitulo+1)+":"+this.versiculo;    
+    this.endereco = nomeLivro+" "+(+this.capitulo+1)+":"+this.versiculo;   
   }
 
   retira_acentos(palavra) {  
@@ -343,10 +352,10 @@ export class BibliaComponent implements OnInit {
           this.mudaVersao('ntlh.json');
         }
       }
-      
+
       if(!this.mostraMenu && !this.mostraAtalho && !this.mostraMenuLateral){
-        if(event.code == 'KeyC' && event.ctrlKey && event.altKey){
-          this.calibracao.show();          
+        if(event.keyCode == 78 && event.ctrlKey && event.altKey){
+          this.calibracao.show();
         }
         if(event.key == 's' && event.ctrlKey){
           this.salvar();          
@@ -444,6 +453,7 @@ export class BibliaComponent implements OnInit {
               this.bibliaService.setMaxVersiculo(maxVersiculo);
               this.maxVersiculo = this.bibliaService.getMaxVersiculo();
               this.passosCalibracao = null;
+              this.mostraCalibracao = null;
               this.calibrando.hide();
               this.charge(true);
               this.fontSizes = this.bibliaService.getFontSizes();

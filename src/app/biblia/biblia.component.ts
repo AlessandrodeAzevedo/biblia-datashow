@@ -3,6 +3,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HostListener } from '@angular/core';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
+import { AnimationBuilder } from 'css-animator';
+
+let animator = new AnimationBuilder();
 
 @Component({
   selector: 'biblia',
@@ -36,9 +39,10 @@ export class BibliaComponent implements OnInit {
   passosCalibracao:number;
   primeiraUtilizacao:boolean = this.bibliaService.getPrimeiraUtilizacao();
 
-  constructor(private bibliaService: BibliaService,private router: Router) {  }
- 
+  constructor(private elementRef: ElementRef,private bibliaService: BibliaService,private router: Router) {}
+
   ngOnInit() { 
+    animator.setDuration(500).setType('bounceInLeft').show(this.elementRef.nativeElement);
     this.charge();    
   }
   salvar(){

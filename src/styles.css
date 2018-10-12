@@ -3,13 +3,17 @@
     position: fixed;
     top: 0;
     right: 0;
-  } 
-  .full button{
-    background:none;
-    border:none;
-    text-shadow: black 0.1em 0.1em 0.2em;  
-  }
-  .full button i{
-    cursor: pointer;
-    color: #ffffff;
-  }
+} 
+.full button{
+  background:none;
+  border:none;
+  text-shadow: black 0.1em 0.1em 0.2em;  
+}
+.full button i{
+  cursor: pointer;
+  color: #ffffff;
+}
+body{
+  background-color: black;
+  overflow: hidden;
+}

@@ -507,6 +507,10 @@ angular-vidbg@0.0.12:
   version "0.0.12"
   resolved "https://registry.yarnpkg.com/angular-vidbg/-/angular-vidbg-0.0.12.tgz#f37091642cd3be926026feabc26222044f2cec19"
 
+animate.css@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.7.0.tgz#5de25d1ee5fba11ba6a1e2c4fa568f512eb7d4da"
+
 ansi-align@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-2.0.0.tgz#c36aeccba563b89ceb556f3690f0b1d9e3547f7f"
@@ -1782,6 +1786,10 @@ crypto-browserify@^3.11.0:
 crypto-random-string@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
+
+css-animator@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/css-animator/-/css-animator-2.3.1.tgz#80c1edfa667259dbc6002f7512456f7ccc3d111c"
 
 css-parse@1.7.x:
   version "1.7.0"

@@ -29,8 +29,6 @@ export class LouvorService {
   buscaMusicaIdVagalume(id){
     if(JSON.parse(localStorage.configuracao)['token_vagalume']){
       return this.http.get('https://api.vagalume.com.br/search.artmus?apikey='+JSON.parse(localStorage.configuracao)['token_vagalume']+'&id='+id+'');
-    }else{
-      return false;
     }
   }
 

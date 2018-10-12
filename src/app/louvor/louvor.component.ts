@@ -1,7 +1,9 @@
 import { LouvorService } from './louvor.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { HostListener } from '@angular/core';
+import { AnimationBuilder } from 'css-animator';
 
+let animator = new AnimationBuilder();
 @Component({
   selector: 'app-louvor',
   templateUrl: './louvor.component.html',
@@ -53,14 +55,15 @@ charge(value){
   this.texto = trecho[this.pagina];
 }
 
-constructor(private louvorService:LouvorService ) { }
+constructor(private elementRef: ElementRef,private louvorService:LouvorService ) { }
 
-  ngOnInit() {
-    if(this.louvorService.getAtivo()){
-      this.musica = this.louvorService.getAtivo()["musica"];
-    }
-    this.charge('no');    
+ngOnInit() {
+  animator.setDuration(500).setType('bounceInLeft').show(this.elementRef.nativeElement);
+  if(this.louvorService.getAtivo()){
+    this.musica = this.louvorService.getAtivo()["musica"];
   }
+  this.charge('no');    
+}
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) { 

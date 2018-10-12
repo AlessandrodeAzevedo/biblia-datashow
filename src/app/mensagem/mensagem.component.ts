@@ -1,7 +1,9 @@
 import { MensagemService } from './mensagem.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { HostListener } from '@angular/core';
+import { AnimationBuilder } from 'css-animator';
 
+let animator = new AnimationBuilder();
 @Component({
   selector: 'mensagem',
   templateUrl: './mensagem.component.html',
@@ -9,7 +11,7 @@ import { HostListener } from '@angular/core';
 })
 export class MensagemComponent implements OnInit {
 
-  constructor(private mensagemService: MensagemService) {  }
+  constructor(private elementRef: ElementRef,private mensagemService: MensagemService) {  }
   
   logo:string = this.mensagemService.getLogo();
   titulo:string = this.mensagemService.getTitulo();
@@ -21,7 +23,9 @@ export class MensagemComponent implements OnInit {
   saves:Array<any> = this.mensagemService.getSaves();
   mostraMenu:boolean = false;
   
-  ngOnInit() { }
+  ngOnInit() {
+    animator.setDuration(500).setType('bounceInLeft').show(this.elementRef.nativeElement);
+  }
 
   charge(){
     this.mostraMenu = false;

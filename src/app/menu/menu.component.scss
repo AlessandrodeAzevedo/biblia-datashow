@@ -6,13 +6,44 @@ img{
 }
 
 div.file {
-    position: relative;
-    overflow: hidden;
-  }
-  input.imagem {
-    position: absolute;
-    font-size: 50px;
-    opacity: 0;
-    right: 0;
-    top: 0;
-  }
+  position: relative;
+  overflow: hidden;
+}
+input.imagem {
+  position: absolute;
+  font-size: 50px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+
+.top-left{
+  position: fixed;
+  top: 0;
+  left: 0;
+} 
+.top-left button{
+  background:none;
+  border:none;
+  text-shadow: black 0.1em 0.1em 0.2em;  
+}
+.top-left button i{
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.bottom-right{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+} 
+.bottom-right button{
+  background:none;
+  border:none;
+  text-shadow: black 0.1em 0.1em 0.2em;  
+}
+.bottom-right button i{
+  cursor: pointer;
+  color: #ffffff;
+}
+

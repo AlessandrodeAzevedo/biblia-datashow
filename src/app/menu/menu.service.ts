@@ -41,6 +41,7 @@ export class MenuService {
 
   setTokenVagalume(value){
     this.tokenVagalume = value;
+    this.atualizaStorage();
     this.configuracao['token_vagalume'] = value;
     this.atualizaStorage();
   }

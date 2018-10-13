@@ -44,7 +44,7 @@
                 <input name='selected' [(ngModel)] = "selected" type="hidden">
                 <input name='titulo' [(ngModel)] = "titulo" type="text" id="titulo" class="form-control" mdbActive>
                 <label for='texto'>Texto:</label>
-                <textarea name="texto" rows="40" [(ngModel)] = "texto" id="texto" (keyup) = "mudaTexto()" class="form-control" mdbActive></textarea>
+                <textarea #myTextArea (keyup)="getCaretPos(myTextArea)" name="texto" rows="40" [(ngModel)] = "texto" id="texto" (keyup) = "mudaTexto()" class="form-control" mdbActive></textarea>
                 <button type="button" class="btn btn-primary waves-light" (click)="salvar()" mdbWavesEffect>Salvar</button>
                 <button *ngIf="this.id" type="button" class="btn btn-danger lighten-4" (click)="excluir()" mdbWavesEffect>Excluir</button>
             </div>

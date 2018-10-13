@@ -17,6 +17,7 @@ export class MenuComponent implements OnInit {
   @Input() menuLateralShow:boolean;
   @Input() menuLateralEnter:boolean;
   @Output() atualizaTexto = new EventEmitter();
+  @Output() caretPos = new EventEmitter();
 
   erro:string;
   selected:boolean;
@@ -45,6 +46,13 @@ export class MenuComponent implements OnInit {
     });
   }; 
  
+  
+  getCaretPos(oField) {
+    if (oField.selectionStart || oField.selectionStart == '0') {
+       this.caretPos.emit(oField.selectionStart);       
+    }
+  }
+
   buscaVagalume(){
     this.louvorService.buscaVagalume(this.busca).subscribe(
     (resposta:Response) => {
@@ -180,6 +188,7 @@ export class MenuComponent implements OnInit {
   }
 
   salvar(){
+    this.caretPos.emit(0); 
     if(!this.titulo || !this.texto){
       return false;
     }
@@ -193,6 +202,7 @@ export class MenuComponent implements OnInit {
   }  
 
   excluir(){
+    this.caretPos.emit(0);
     if(!this.id){
       return false;
     }
@@ -246,6 +256,7 @@ export class MenuComponent implements OnInit {
     }else{
       this.menuLateral.hide();
     }
+    this.caretPos.emit(0); 
     this.id = null;
     this.titulo = null;
     this.texto = null;

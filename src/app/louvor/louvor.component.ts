@@ -34,6 +34,13 @@ showMenuLateral(enter = false){
     this.mostraMenuLateral = true;
   }
 }
+
+caretPos:number = 0;
+inputPosition(value){
+  this.caretPos = value;
+}
+
+
 charge(value){
   if(value == 'page'){
     this.pagina = 0;
@@ -47,6 +54,11 @@ charge(value){
     let maxPagina = this.musica.split("<br><br><br>").length-1;
     if(this.pagina > maxPagina){
       this.pagina = 0;
+    }
+    if(this.caretPos){
+      let musPos = this.musica.replace(/(<br>)/g, '#');
+      let pos = musPos.substr(0, this.caretPos);
+      this.pagina = pos.split("###").length-1;
     }
   }else{
     this.pagina = 0;

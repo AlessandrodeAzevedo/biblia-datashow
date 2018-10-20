@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Tray, Menu, globalShortcut, dialog }  = require('electron');
+const { app, BrowserWindow }  = require('electron');
 //const { autoUpdater } = require('electron-updater');
 const url = require('url');
 const path = require('path');

@@ -40,7 +40,7 @@ export class MenuComponent implements OnInit {
     this.menuService.setLogo(this.localUrl);
     this.menuService.setTokenVagalume(this.tokenVagalume);
     this.menuGeral.hide();
-    this.navegar('/');    
+    this.navegar('/');
   }
 
   navegar(local){
@@ -68,6 +68,13 @@ export class MenuComponent implements OnInit {
     if(event.key == '4' && event.ctrlKey){
       this.navegar('louvor');
       return false;
-    }   
+    }
+    if(event.key == 'L' && event.ctrlKey && event.shiftKey){
+      let result = confirm('Você realmente quer apagar todos os dados?');
+      if(result){
+        localStorage.clear();
+        this.navegar('/');
+      }
+    }
   }
 }

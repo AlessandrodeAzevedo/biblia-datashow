@@ -9,6 +9,7 @@
 /firstdesk-win32-x642
 /aot
 /e2e
+/release-builds
 
 # dependencies
 /node_modules

@@ -14,6 +14,11 @@ export class MenuService {
     this.configuracao =  JSON.parse(localStorage.configuracao);
     this.logo = this.configuracao['logo'];
   }
+
+  rechargeStorage(){
+    this.configuracao = JSON.parse(localStorage.configuracao);
+  }
+
   atualizaStorage(){
     localStorage.configuracao = JSON.stringify(this.configuracao);
   }
@@ -34,14 +39,14 @@ export class MenuService {
   */
   setLogo(value){
     this.logo = value;
+    this.rechargeStorage();
     this.configuracao['logo'] = value;
-    this.atualizaStorage();
-    window.location.reload();
+    this.atualizaStorage();    
   }
 
   setTokenVagalume(value){
     this.tokenVagalume = value;
-    this.atualizaStorage();
+    this.rechargeStorage();
     this.configuracao['token_vagalume'] = value;
     this.atualizaStorage();
   }

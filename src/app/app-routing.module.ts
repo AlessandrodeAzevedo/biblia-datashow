@@ -6,15 +6,15 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [  
-  { path: 'biblia', component: BibliaComponent },
+  { path: 'biblia', component: BibliaComponent,runGuardsAndResolvers: 'always' },
   { path: 'standby', component: StandbyComponent },
   { path: 'mensagem', component: MensagemComponent },
   { path: 'louvor', component: LouvorComponent },
-  { path: '', redirectTo: '/biblia', pathMatch: 'full' },  
+  { path: '', redirectTo: '/biblia', pathMatch: 'full',runGuardsAndResolvers: 'always' }
 ];
 
 @NgModule({
-  exports: [ RouterModule ],
-  imports: [ RouterModule.forRoot(routes) ]
+  imports: [ RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule {}

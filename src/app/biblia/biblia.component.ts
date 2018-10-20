@@ -38,8 +38,13 @@ export class BibliaComponent implements OnInit {
   mostraCalibracao:boolean = false;
   passosCalibracao:number;
   primeiraUtilizacao:boolean = this.bibliaService.getPrimeiraUtilizacao();
+  navigationSubscription;
 
-  constructor(private elementRef: ElementRef,private bibliaService: BibliaService,private router: Router) {}
+  constructor(private elementRef: ElementRef,private bibliaService: BibliaService,private router: Router) {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      this.logo = this.bibliaService.getLogo();
+    });
+  }
 
   ngOnInit() { 
     animator.setDuration(500).setType('bounceInLeft').show(this.elementRef.nativeElement);

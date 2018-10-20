@@ -13,8 +13,8 @@
     "e2e": "ng e2e",
     "electron": "electron .",
     "ng-high-mem": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng",
-    "package": "electron-packager . firstdesk",
-    "package-win": "electron-packager . biblia-datashow-app --overwrite --asar=true --platform=win32 --arch=x64 --icon=favicon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Biblia Datashow\"",
+    "package": "electron-packager . firstdesk --overwrite --icon=src/assets/media/images/icon-datashow.ico",
+    "package-win": "electron-packager . biblia-datashow-app --overwrite --asar=true --platform=win32 --arch=x64 --icon=src/assets/media/images/icon-datashow.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Biblia Datashow\"",
     "electron-build": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --prod && electron .",
     "build": "electron-builder -p always",
     "build:dir": "electron-builder --dir",
@@ -22,7 +22,7 @@
     "dist": "ng build --prod",
     "distwin": "ng build --prod && build --win",
     "builder": "electron-builder",
-    "build-win32": "electron-packager . --no-tmpdir --platform win32 --out ./dist",
+    "build-win32": "electron-packager ./dist --no-tmpdir --platform win32 --out=release-builds",
     "aot-electron": "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng b -op aot -aot -sm -v"
   },
   "private": true,
@@ -68,7 +68,6 @@
     "electron": "^2.0.8",
     "electron-builder": "^20.28.2",
     "electron-packager": "^12.1.0",
-    "electron-updater": "^3.1.1",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",
@@ -81,27 +80,5 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.9.1",
     "typescript": "^2.7.*"
-  },
-  "build": {
-    "appId": "com.biblia-datashow.app",
-    "productName": "Biblia Datashow",
-    "files": [
-      "**/*",
-      "dist/**/*"
-    ],
-    "directories": {
-      "output": "release",
-      "buildResources": "dist"
-    },
-    "asar": false,
-    "win": {
-      "icon": "icon-datashow.png",
-      "target": [
-        "nsis"
-      ]
-    },
-    "nsis": {
-      "runAfterFinish": true
-    }
   }
 }

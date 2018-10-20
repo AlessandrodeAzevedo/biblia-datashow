@@ -39,6 +39,8 @@ export class MenuComponent implements OnInit {
     }
     this.menuService.setLogo(this.localUrl);
     this.menuService.setTokenVagalume(this.tokenVagalume);
+    this.menuGeral.hide();
+    this.navegar('/');    
   }
 
   navegar(local){
@@ -66,10 +68,6 @@ export class MenuComponent implements OnInit {
     if(event.key == '4' && event.ctrlKey){
       this.navegar('louvor');
       return false;
-    }
-    if(event.keyCode == 68 && event.shiftKey && event.altKey){
-      localStorage.clear();
-      window.location.reload();
-    }
+    }   
   }
 }

@@ -69,12 +69,5 @@ export class MenuComponent implements OnInit {
       this.navegar('louvor');
       return false;
     }
-    if(event.key == 'L' && event.ctrlKey && event.shiftKey){
-      let result = confirm('Você realmente quer apagar todos os dados?');
-      if(result){
-        localStorage.clear();
-        this.navegar('/');
-      }
-    }
   }
 }

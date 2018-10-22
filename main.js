@@ -23,11 +23,6 @@ function createWindow () {
     mainWindow.loadURL(file);
     //mainWindow.loadURL('http://localhost:4200');
 
-    mainWindow.on('minimize', function(e) {
-        e.preventDefault();
-        mainWindow.hide();
-    });
-
     mainWindow.on('close', function(e) {
         if (!app.isQuiting) {
             e.preventDefault();

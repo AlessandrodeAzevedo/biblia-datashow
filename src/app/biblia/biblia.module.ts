@@ -9,8 +9,6 @@ import { AtalhoComponent } from './atalho/atalho.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 
-
-
 @NgModule({
   imports: [
     MDBBootstrapModule.forRoot(),

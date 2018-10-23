@@ -1,3 +1,4 @@
+import { AtalhoComponent } from './atalho/atalho.component';
 import { MensagemService } from './mensagem.service';
 import { MensagemComponent } from './mensagem.component';
 import { NgModule, NO_ERRORS_SCHEMA  } from '@angular/core';
@@ -6,7 +7,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MenuComponent } from './menu/menu.component';
-
 
 
 @NgModule({
@@ -20,7 +20,8 @@ import { MenuComponent } from './menu/menu.component';
   ],
   declarations: [
     MensagemComponent,
-    MenuComponent    
+    MenuComponent,
+    AtalhoComponent    
   ],
   exports:[
     MensagemComponent

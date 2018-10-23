@@ -22,6 +22,7 @@ export class MensagemComponent implements OnInit {
   historics:Array<any> = this.mensagemService.getHistorics();
   saves:Array<any> = this.mensagemService.getSaves();
   mostraMenu:boolean = false;
+  mostraAtalho:boolean = false;
   
   ngOnInit() {
     animator.setDuration(500).setType('bounceInLeft').show(this.elementRef.nativeElement);
@@ -75,6 +76,9 @@ export class MensagemComponent implements OnInit {
     if(event.key == 'ArrowLeft'){}
     if(event.key == 'Escape'){
       this.mostraMenu = false;
+    }
+    if(event.key == 'Enter'){
+      this.mostraAtalho =  true;
     }
   }
 }

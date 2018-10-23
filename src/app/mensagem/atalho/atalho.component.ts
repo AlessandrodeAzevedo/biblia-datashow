@@ -29,6 +29,12 @@ export class AtalhoComponent implements OnInit {
   setFocusToInput() {
       this.focusInput.nativeElement.focus();
   }
+
+  enviarFechar(){
+    this.error = null;
+    this.atalhoInput = null;
+    this.atalho.hide();
+  }
   
   retira_acentos(palavra) {
     if(palavra.toLowerCase() == 'jó'){
@@ -139,12 +145,13 @@ export class AtalhoComponent implements OnInit {
             this.error = "Versículo não encontrado";
             return false;
           }
+          this.enviarFechar();
           this.bibliaService.setLivro(+livro);
           this.bibliaService.setCapitulo(+capitulo);
           this.bibliaService.setVersiculo(+versiculo);
           this.bibliaService.setMaxCapitulo(this.book[+livro].chapters.length);
           this.bibliaService.setMaxVersiculo(maxVersiculo);
-          this.router.navigate(['/biblia']);
+          this.router.navigateByUrl('/biblia');
         }else{
           this.error = "Livro não encontrado";
         }

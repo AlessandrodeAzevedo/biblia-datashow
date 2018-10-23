@@ -118,6 +118,7 @@ ngOnInit() {
     }
     if(event.key == 'Enter'){
       this.showMenuLateral(true);
+      return false;
     }
     if(event.key == 'Escape'){
       this.mostraMenuLateral = false;

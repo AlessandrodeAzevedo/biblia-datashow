@@ -34,15 +34,12 @@ export class MenuComponent implements OnInit {
   checkOnline() { 
     this.louvorService.testeConexao().subscribe(
     (data:Response) => {
-      this.online = true; 
-      return true; 
+      this.online = true;       
     }, err => { 
       if(err.status){ 
         this.online = true; 
-        return true; 
       } 
       this.online = false; 
-      return false; 
     });
   }; 
  

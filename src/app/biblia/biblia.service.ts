@@ -112,8 +112,10 @@ export class BibliaService {
   }
   getVersoes(){
     let versoes_array =  [];
+    let app_json = JSON.stringify(require('../../assets/JSON/app.json'));
+    app_json = JSON.parse(app_json);
     let i:number = 0;
-    for (let [key, value] of Object.entries(this.versoes)) {
+    for (let [key, value] of Object.entries(app_json['biblia']['versoes'])) {
       versoes_array[i] = {"id":""+key+"","name":""+value+""};
       i++;
     }

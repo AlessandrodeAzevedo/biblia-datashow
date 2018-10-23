@@ -356,6 +356,18 @@ export class BibliaComponent implements OnInit {
         if(event.key == '5'){
           this.mudaVersao('ntlh.json');
         }
+        if(event.key == '6'){
+          this.mudaVersao('kja.json');
+        }
+        if(event.key == '7'){
+          this.mudaVersao('jerusalem.json');
+        }
+        if(event.key == '8'){
+          this.mudaVersao('avemaria.json');
+        }
+        if(event.key == '9'){
+          this.mudaVersao('tnm.json');
+        }
       }
 
       if(!this.mostraMenu && !this.mostraAtalho && !this.mostraMenuLateral){

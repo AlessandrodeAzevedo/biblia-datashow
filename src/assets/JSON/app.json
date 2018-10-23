@@ -46,9 +46,12 @@
     "versoes": {
       "ara.json": "Almeida revista e atualizada (ara)",
       "acf.json": "Almeida corrigida (acf)",
-      "aa.json": "Almeida (aa)",
+      "aa.json": "Almeida atualizada (aa)",
       "nvi.json": "Nova versão internacional (nvi)",
-      "ntlh.json": "Linguagem de Hoje (ntlh)"
+      "kja.json": "King James (kja)",
+      "jerusalem.json": "Jerusalém",
+      "avemaria.json": "Ave Maria",
+      "tnm.json": "Tradução novo mundo (tnm)"
     },
     "sizes": {}
   },

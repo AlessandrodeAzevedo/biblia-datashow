@@ -64,3 +64,15 @@ video{
     box-sizing: border-box;
     font-family: AmaticSC;
 }  
+
+.versao{
+    width:100%;
+    text-align: center;
+    position:fixed;
+    bottom:0;
+    font-family: AmaticSC;
+    color: white;
+    font-size: 20px;
+    text-shadow: 2px 2px 2px #000;
+    font-weight: bold;
+}

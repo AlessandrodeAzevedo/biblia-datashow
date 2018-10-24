@@ -171,7 +171,8 @@ export class MenuComponent implements OnInit {
         this.titulo = artista+" - "+titulo;
         this.selected = null;
         this.busca = null;
-        this.texto = letra.replace(/\n\n/g, '\n\n\n');        
+        this.texto = letra.replace(/\n\n/g, '\n\n\n');
+        this.mudaTexto();
       }, err => {
           console.log('Erro ao buscar musica: ', err);
       });
@@ -180,6 +181,7 @@ export class MenuComponent implements OnInit {
       this.titulo = titulo;
       this.selected = selected;
       this.texto = texto.replace(/<br>/g, '\n');
+      this.mudaTexto();
     }
     this.navigate = 'musica';
   }
@@ -239,6 +241,7 @@ export class MenuComponent implements OnInit {
   }
 
   mudaTexto(){
+
     this.atualizaTexto.emit(this.texto.replace(/(\r\n|\n\r|\r|\n)/g, '<br>'));
   }
   arr(obj){

@@ -37,12 +37,11 @@ input.imagem {
   bottom: 0;
   left: 0;
 } 
-.bottom-right button{
+.bottom-right i{
   background:none;
   border:none;
   text-shadow: black 0.1em 0.1em 0.2em;  
-}
-.bottom-right button i{
+  margin: 5px;
   cursor: pointer;
   color: #ffffff;
 }

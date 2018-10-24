@@ -2,10 +2,10 @@
     <button (click)="mostrarConfiguracoes()" ><i class="fa fa-cogs"></i></button>
 </div>
 <div class="bottom-right">
-    <button (click)="navegar('biblia')" ><i class="fa fa-book"></i></button>
-    <button (click)="navegar('standby')" ><i class="fa fa-picture-o"></i></button>
-    <button (click)="navegar('mensagem')" ><i class="fa fa-newspaper-o"></i></button>
-    <button (click)="navegar('louvor')" ><i class="fa fa-music"></i></button>
+    <i (click)="navegar('biblia')" class="fa fa-book"></i>
+    <i (click)="navegar('standby')" class="fa fa-picture-o"></i>
+    <i (click)="navegar('mensagem')" class="fa fa-newspaper-o"></i>
+    <i (click)="navegar('louvor')" class="fa fa-music"></i>
 </div>
 <div mdbModal #menuGeral="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myMenuGeralLabel"
   aria-hidden="true">

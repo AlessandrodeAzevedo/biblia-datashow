@@ -28,13 +28,13 @@ export class LouvorService {
 
   buscaMusicaIdVagalume(id){
     if(JSON.parse(localStorage.configuracao)['token_vagalume']){
-      return this.http.get('https://api.vagalume.com.br/search.artmus?apikey='+JSON.parse(localStorage.configuracao)['token_vagalume']+'&id='+id+'');
+      return this.http.get('https://api.vagalume.com.br/search.excerpt?apikey='+JSON.parse(localStorage.configuracao)['token_vagalume']+'&id='+id+'');
     }
   }
 
   buscaVagalume(busca){
     if(JSON.parse(localStorage.configuracao)['token_vagalume']){
-      let anwser = this.http.get('https://api.vagalume.com.br/search.artmus?q='+busca+'&limit=10');    
+      let anwser = this.http.get('https://api.vagalume.com.br/search.excerpt?q='+busca+'&limit=10');    
       return anwser;
     }
   }

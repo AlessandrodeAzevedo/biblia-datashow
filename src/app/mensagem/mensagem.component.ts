@@ -53,12 +53,10 @@ export class MensagemComponent implements OnInit {
       if(event.key == 'ArrowDown'){
         this.mensagemService.setTextoFont((+this.textoFont-0.05));
         this.textoFont = this.mensagemService.getTextoFont();
-        console.log(isNaN(this.textoFont));
         if(isNaN(this.textoFont)){
           this.mensagemService.setTextoFont(1);
           this.textoFont = this.mensagemService.getTextoFont();
         }
-        console.log(this.textoFont);
       }
     }
     if(event.ctrlKey){
@@ -69,7 +67,6 @@ export class MensagemComponent implements OnInit {
       if(event.key == 'ArrowDown'){
         this.mensagemService.setMargem((+this.margem-0.02));
         this.margem = this.mensagemService.getMargem();
-        console.log(this.margem);
       }
     }
     if(event.key == 'ArrowRight'){}

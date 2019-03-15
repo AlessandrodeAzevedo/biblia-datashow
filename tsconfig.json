@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "importHelpers": true,
     "outDir": "./build/out-tsc",
     "sourceMap": true,
     "declaration": false,

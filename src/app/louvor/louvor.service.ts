@@ -39,7 +39,7 @@ export class LouvorService {
     }
   }
   
-  testeConexao(){ 
+  testeConexao(){
     if(JSON.parse(localStorage.configuracao)['token_vagalume']){
       let anwser = this.http.get('https://www.google.com');     
       return anwser;

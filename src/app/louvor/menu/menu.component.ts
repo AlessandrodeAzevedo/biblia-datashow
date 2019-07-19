@@ -38,8 +38,10 @@ export class MenuComponent implements OnInit {
     }, err => { 
       if(err.status){ 
         this.online = true; 
-      } 
-      this.online = false; 
+      }else{
+        this.online = false;
+      }
+      console.log(this.online);
     });
   }; 
  

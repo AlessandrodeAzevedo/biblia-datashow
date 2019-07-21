@@ -572,30 +572,31 @@ export class BibliaComponent implements OnInit {
                 this.maxVersiculo = this.bibliaService.getMaxVersiculo();
                 this.versiculo = this.bibliaService.getVersiculo();
                 this.charge();
-              }
-              //Caso o capitulo for menor ou igual a zero precisa chamar o último capitulo do livro anterior
-              if((+this.capitulo-1)<0){
-                if((+this.livro-1) >= 0){
-
-                  this.bibliaService.setLivro((+this.livro-1));
-                  this.livro = this.bibliaService.getLivro();
-
-                  this.bibliaService.setMaxCapitulo(this.book[+this.livro].chapters.length);
-                  this.maxCapitulo = this.bibliaService.getMaxCapitulo();
-
-                  this.bibliaService.setCapitulo(((+this.book[+this.livro].chapters.length)-1));
-                  this.capitulo = this.bibliaService.getCapitulo();
-
-                  let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
-                  var maxVersiculo = 0;
-                  for (let [key, value] of Object.entries(versiculos)) {
-                    maxVersiculo++;
+              }else{
+                //Caso o capitulo for menor ou igual a zero precisa chamar o último capitulo do livro anterior
+                if((+this.capitulo-1)<0){
+                  if((+this.livro-1) >= 0){
+  
+                    this.bibliaService.setLivro((+this.livro-1));
+                    this.livro = this.bibliaService.getLivro();
+  
+                    this.bibliaService.setMaxCapitulo(this.book[+this.livro].chapters.length);
+                    this.maxCapitulo = this.bibliaService.getMaxCapitulo();
+  
+                    this.bibliaService.setCapitulo(((+this.book[+this.livro].chapters.length)-1));
+                    this.capitulo = this.bibliaService.getCapitulo();
+  
+                    let versiculos = this.book[+this.livro].chapters[+this.capitulo][(+this.capitulo+1)];
+                    var maxVersiculo = 0;
+                    for (let [key, value] of Object.entries(versiculos)) {
+                      maxVersiculo++;
+                    }
+                    this.bibliaService.setMaxVersiculo(maxVersiculo);
+                    this.bibliaService.setVersiculo(maxVersiculo);
+                    this.maxVersiculo = this.bibliaService.getMaxVersiculo();
+                    this.versiculo = this.bibliaService.getVersiculo();
+                    this.charge();            
                   }
-                  this.bibliaService.setMaxVersiculo(maxVersiculo);
-                  this.bibliaService.setVersiculo(maxVersiculo);
-                  this.maxVersiculo = this.bibliaService.getMaxVersiculo();
-                  this.versiculo = this.bibliaService.getVersiculo();
-                  this.charge();            
                 }
               }
             }

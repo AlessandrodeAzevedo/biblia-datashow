@@ -5,8 +5,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="fechaMenu()">
                     <span aria-hidden="true">×</span>
                 </button>
-                <i *ngIf='selecionados == false' class="pointer fa fa-bookmark grey-text text-lighten-2 left" (click)="habilitaSelecionados(true)" style="padding-left:10px;"></i>                
-                <i  *ngIf='selecionados' (click)="habilitaSelecionados()" class="pointer fa fa-bookmark red-text text-lighten-2 left" style="padding-left:10px;"></i>                
+                <i *ngIf='selecionados == false' class="pointer fas fa-bookmark grey-text text-lighten-2 left" (click)="habilitaSelecionados(true)" style="padding-left:10px;"></i>                
+                <i  *ngIf='selecionados' (click)="habilitaSelecionados()" class="pointer fas fa-bookmark red-text text-lighten-2 left" style="padding-left:10px;"></i>                
             </p>
             <div *ngIf="controle('menu')" class="col-md-12 menu md-form" style="overflow-y: auto">
                 <br>
@@ -23,18 +23,18 @@
                 <div class="row">
                     <div class="col">
                         <button type="button" class="btn btn-primary btn-sm btn-block waves-light form-control" (click)="novaMusica()" mdbWavesEffect>Nova música</button>
-                        <button *ngIf='busca?.length >= 4 && online' type="button" class="btn btn-blue-grey btn-sm btn-block waves-light form-control" (click)="buscaVagalume()" mdbWavesEffect>Buscar no vagalume</button>
+                        <button *ngIf='busca?.length >= 4 && online' type="button" class="btn btn-blue-grey btn-sm btn-block waves-light form-control mt-1" (click)="buscaVagalume()" mdbWavesEffect>Buscar no vagalume</button>
                     </div>
                 </div>
                 <br>
                 <ul class="list-group">
                    <li *ngFor="let musica of musicas; let e=odd;"  class="list-group-item">
-                        <i *ngIf='musica?.selected == false || musica?.selected == null' (click)="adicionaAtalho(musica.id,musica.titulo,musica.musica)" class="fa fa-bookmark grey-text text-lighten-2"></i>
-                        <i *ngIf='musica?.selected' (click)="tiraAtalho(musica.id,musica.titulo,musica.musica)" class="fa fa-bookmark red-text text-lighten-2"></i>
-                        <a *ngIf='musica?.vagalume' > {{musica.titulo}}</a>
-                        <i *ngIf='musica?.vagalume' (click)="editar(musica.id,musica.titulo,musica.musica,false,musica.vagalume)" class="blue-text fa fa-cloud-download pull-right"></i>
-                        <a *ngIf='musica?.vagalume == null' (click)="carregaMusica(musica.titulo,musica.musica)"> {{musica.titulo}}</a>
-                        <i *ngIf='musica?.vagalume == null' (click)="editar(musica.id,musica.titulo,musica.musica,musica.selected)" class="blue-text fa fa-edit pull-right"></i>
+                        <i *ngIf='musica?.selected == false || musica?.selected == null' (click)="adicionaAtalho(musica.id,musica.titulo,musica.musica)" class="fas fa-bookmark grey-text text-lighten-2"></i>
+                        <i *ngIf='musica?.selected' (click)="tiraAtalho(musica.id,musica.titulo,musica.musica)" class="fas fa-bookmark red-text text-lighten-2"></i>
+                        <a *ngIf='musica?.vagalume' > {{musica.titulo}} </a>
+                        <i *ngIf='musica?.vagalume' (click)="editar(musica.id,musica.titulo,musica.musica,false,musica.vagalume)" class="blue-text fas fa-cloud-download-alt pull-right"></i>
+                        <a *ngIf='musica?.vagalume == null' (click)="carregaMusica(musica.titulo,musica.musica)"> {{musica.titulo}} </a>
+                        <i *ngIf='musica?.vagalume == null' (click)="editar(musica.id,musica.titulo,musica.musica,musica.selected)" class="blue-text fas fa-edit pull-right"></i>
                     </li>                                        
                 </ul>
                 <br>                

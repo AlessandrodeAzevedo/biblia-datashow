@@ -8,8 +8,8 @@ import { HostListener } from '@angular/core';
   styleUrls: ['./atalho.component.scss']
 })
 export class AtalhoComponent implements OnInit {
-  @ViewChild('atalho') public atalho;
-  @ViewChild('focusInput') focusInput: ElementRef;
+  @ViewChild('atalho', {static: false}) public atalho;
+  @ViewChild('focusInput', {static: false}) focusInput: ElementRef;
   @Input() menuShow:boolean;
   @Input() calibracaoShow:boolean;
   @Output() mudaTexto = new EventEmitter();

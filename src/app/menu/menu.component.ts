@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
 
   
-  @ViewChild('menuGeral') public menuGeral;
+  @ViewChild('menuGeral', {static: false}) public menuGeral;
   logo:string = this.menuService.getLogo();
   imagem:String;
   tokenVagalume = this.menuService.getTokenVagalume();

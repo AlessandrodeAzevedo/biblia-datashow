@@ -26,7 +26,7 @@
     <div class="modal-content">
         <div class="modal-body">
             <div class="text-center">
-                <i class="fa fa-exclamation-triangle fa-2x mb-3 animated rotateIn"></i>
+                <i class="fas fa-exclamation-triangle fa-2x mb-3 animated rotateIn"></i>
                 <p *ngIf='!primeiraUtilizacao'>A calibração apagará qualquer configuração anterior deseja mesmo calibrar agora?</p>
                 <p *ngIf='primeiraUtilizacao'>Essa é a sua primeira utilização, para melhor experiênca iremos realizar a primeira calibração para o seu dispositivo, clique em calibrar e siga as instruções do canto inferior esquerdo!</p>
                 <a href="javascript:void(0)" (click)="calibrar_font(true);" class="btn btn-primary waves-light">Calibrar</a>
@@ -44,7 +44,7 @@
           <div class="modal-body" class="badge warning-color-dark">
               <div class="text-center">
                   
-                  <div style="font-size:20px"><i class="fa fa-exclamation-triangle mb-3 animated rotateIn"></i> Calibrando ...</div>
+                  <div style="font-size:20px"><i class="fas fa-exclamation-triangle mb-3 animated rotateIn"></i> Calibrando ...</div>
                   <div>Ajuste o tamanho do texto utilizando as setas para cima e para baixo,<br>logo após pressione ENTER</div>
                   <div>{{ passosCalibracao }}/6</div>
               </div>

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class MenuLateralComponent implements OnInit {
 
-  @ViewChild('menuLateral') public menuLateral;
+  @ViewChild('menuLateral', {static: false}) public menuLateral;
 
   @Input() menuLateralShow:boolean;
   @Input() menuShow:boolean;

@@ -15,7 +15,7 @@
     "ng-high-mem": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng",
     "package": "electron-packager . firstdesk --overwrite --icon=src/assets/media/images/icon-datashow.ico",
     "package-win": "electron-packager . biblia-datashow-app --overwrite --asar=true --platform=win32 --arch=x64 --icon=src/assets/media/images/icon-datashow.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Biblia Datashow\"",
-    "electron-build": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --prod && electron .",
+    "electron-build": "node --max_old_space_size=6192 node_modules/@angular/cli/bin/ng build --prod && electron .",
     "build": "electron-builder -p always",
     "build:dir": "electron-builder --dir",
     "postinstall": "install-app-deps",

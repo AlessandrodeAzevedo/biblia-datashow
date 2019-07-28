@@ -19,6 +19,20 @@ minimizar.addEventListener('click', function(e) {
     mainWindow.minimize();
 });
 
+let toogleWindow = document.getElementById('toogle-window');
+toogleWindow.addEventListener('click', function(e) {
+    e.preventDefault();
+    let displays = remote.screen.getAllDisplays();
+    let display;
+    for(let i=0; displays.length > i; i++){
+        if(mainWindow.getContentBounds().x !==displays[i].bounds.x){
+            display = displays[i];
+        }
+    }
+    if (display) {
+        mainWindow.setBounds({ x: display.bounds.x + 50, y: display.bounds.y + 50, width: 800, height: 600 });
+    }
+});
 
 Mousetrap.bind('up up down down left right s', function () {
     let result = confirm('Você realmente quer apagar todos os dados?');

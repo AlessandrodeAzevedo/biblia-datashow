@@ -373,6 +373,7 @@ export class BibliaComponent implements OnInit {
       if(!this.mostraMenu && !this.mostraAtalho && !this.mostraMenuLateral){
         if(event.keyCode == 78 && event.ctrlKey && event.altKey){
           this.calibracao.show();
+          this.calibracao.backdrop = false;
         }
         if(event.key == 's' && event.ctrlKey){
           this.salvar();          

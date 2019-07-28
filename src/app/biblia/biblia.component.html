@@ -38,17 +38,16 @@
   </div>
 </div>
 
-<div mdbModal #calibrando="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
-    <div class="modal-dialog modal-side warning-color-dark modal-bottom-left" role="document">
-      <div class="modal-content">
-          <div class="modal-body" class="badge warning-color-dark">
+<div mdbModal #calibrando="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+    <div class="modal-dialog modal-side modal-bottom-left" role="document" style="bottom: 10px; position: fixed;">
+        <div class="modal-content">
+            <div class="modal-body warning-color-dark badge text-white">
               <div class="text-center">
-                  
-                  <div style="font-size:20px"><i class="fas fa-exclamation-triangle mb-3 animated rotateIn"></i> Calibrando ...</div>
-                  <div>Ajuste o tamanho do texto utilizando as setas para cima e para baixo,<br>logo após pressione ENTER</div>
-                  <div>{{ passosCalibracao }}/6</div>
+                <div style="font-size:20px"><i class="fas fa-exclamation-triangle mb-3 animated rotateIn"></i> Calibrando ...</div>
+                <div>Ajuste o tamanho do texto utilizando as setas para cima e para baixo,<br>logo após pressione ENTER</div>
+                <div>{{ passosCalibracao }}/6</div>
               </div>
-          </div>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
+</div>

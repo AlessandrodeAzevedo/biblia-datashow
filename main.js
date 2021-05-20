@@ -20,6 +20,8 @@ function createWindow () {
         slashes: true
     });
 
+    mainWindow.removeMenu();
+    
     mainWindow.loadURL(file);
     //mainWindow.loadURL('http://localhost:4200');
 

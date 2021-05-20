@@ -15,8 +15,8 @@ let animator = new AnimationBuilder();
 
 
 export class BibliaComponent implements OnInit {
-  @ViewChild('calibracao', {static: false}) public calibracao;
-  @ViewChild('calibrando', {static: false}) public calibrando;
+  @ViewChild('calibracao') public calibracao;
+  @ViewChild('calibrando') public calibrando;
 
   book:JSON = this.bibliaService.getBook();
   logo:string = this.bibliaService.getLogo();;

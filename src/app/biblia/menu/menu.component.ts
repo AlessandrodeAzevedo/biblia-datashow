@@ -9,7 +9,7 @@ import { HostListener } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  @ViewChild('menu', {static: false}) public menu;
+  @ViewChild('menu') public menu;
 
   book:JSON = this.bibliaService.getBook();
   capitulo:number = +this.bibliaService.getCapitulo()+1;

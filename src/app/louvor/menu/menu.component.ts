@@ -13,7 +13,7 @@ export class MenuComponent implements OnInit {
   
   constructor(private louvorService : LouvorService) { }
 
-  @ViewChild('menuLateral', {static: false}) public menuLateral;
+  @ViewChild('menuLateral') public menuLateral;
   @Input() menuLateralShow:boolean;
   @Input() menuLateralEnter:boolean;
   @Output() atualizaTexto = new EventEmitter();

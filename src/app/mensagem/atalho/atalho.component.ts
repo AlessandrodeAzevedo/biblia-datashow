@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./atalho.component.scss']
 })
 export class AtalhoComponent implements OnInit {
-  @ViewChild('atalho', {static: false}) public atalho;
-  @ViewChild('focusInput', {static: false}) focusInput: ElementRef;
+  @ViewChild('atalho') public atalho;
+  @ViewChild('focusInput') focusInput: ElementRef;
   @Input() menuShow:boolean;
   @Input() calibracaoShow:boolean;
   @Output() mudaTexto = new EventEmitter();

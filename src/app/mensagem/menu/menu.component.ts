@@ -11,7 +11,7 @@ export class MenuComponent implements OnInit {
   titulo:string = this.mensagemService.getTitulo();
   texto:string = this.mensagemService.getTexto();
   @Output() atualizaMensagem = new EventEmitter();
-  @ViewChild('menu', {static: false}) public menu;
+  @ViewChild('menu') public menu;
 
   constructor(private mensagemService: MensagemService) { }
   

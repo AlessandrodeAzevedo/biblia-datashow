@@ -167,9 +167,9 @@ export class MenuComponent implements OnInit {
   editar(id,titulo,texto,selected,vagalume = false){
     if(vagalume){
       this.louvorService.buscaMusicaIdVagalume(id).subscribe(resposta => {
-        let artista = resposta['response']['docs'][0]['band'];
-        let titulo = resposta['response']['docs'][0]['title'];
-        let letra = resposta['response']['docs'][0]['letra'];
+        let artista = resposta['art']['name'];
+        let titulo = resposta['mus'][0]['name'];
+        let letra = resposta['mus'][0]['text'];
         this.titulo = artista+" - "+titulo;
         this.selected = null;
         this.busca = null;

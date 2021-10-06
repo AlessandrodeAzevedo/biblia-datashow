@@ -28,7 +28,7 @@ export class LouvorService {
 
   buscaMusicaIdVagalume(id){
     if(JSON.parse(localStorage.configuracao)['token_vagalume']){
-      return this.http.get('https://api.vagalume.com.br/search.excerpt?apikey='+JSON.parse(localStorage.configuracao)['token_vagalume']+'&id='+id+'');
+      return this.http.get(`https://api.vagalume.com.br/search.php?musid=${id}&apikey=${JSON.parse(localStorage.configuracao)['token_vagalume']}`);
     }
   }
 

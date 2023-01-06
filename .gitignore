@@ -31,6 +31,7 @@
 !.vscode/extensions.json
 
 # misc
+/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage
@@ -39,6 +40,7 @@ npm-debug.log
 testem.log
 /typings
 package-lock.json
+pnpm-lock.yaml
 
 # e2e
 /e2e/*.js

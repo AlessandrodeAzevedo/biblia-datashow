@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-side modal-top-right" role="document">
         <div class="modal-content">
             <p>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="fechaMenu()">
+                <button type="button" data-test="praise-menu-close" class="close" data-dismiss="modal" aria-label="Close" (click)="fechaMenu()">
                     <span aria-hidden="true">×</span>
                 </button>
                 <i *ngIf='selecionados == false' class="pointer fas fa-bookmark grey-text text-lighten-2 left" (click)="habilitaSelecionados(true)" style="padding-left:10px;"></i>                
@@ -19,11 +19,11 @@
                         </div>
                     </div>
                 </div>
-                <input name='busca' [(ngModel)] = "busca" placeholder="Digite para buscar uma música" type="text" id="busca" (keyup)="buscar()" class="form-control" mdbActive>
+                <input name='busca' [(ngModel)] = "busca" data-test="praise-menu-search-input" placeholder="Digite para buscar uma música" type="text" id="busca" (keyup)="buscar()" class="form-control" mdbActive>
                 <div class="row">
                     <div class="col">
                         <button type="button" class="btn btn-primary btn-sm btn-block waves-light form-control" (click)="novaMusica()" mdbWavesEffect>Nova música</button>
-                        <button *ngIf='busca?.length >= 4 && online' type="button" class="btn btn-blue-grey btn-sm btn-block waves-light form-control mt-1" (click)="buscaVagalume()" mdbWavesEffect>Buscar no vagalume</button>
+                        <button *ngIf='busca?.length >= 4 && online' data-test="praise-menu-search-button-vagalume" type="button" class="btn btn-blue-grey btn-sm btn-block waves-light form-control mt-1" (click)="buscaVagalume()" mdbWavesEffect>Buscar no vagalume</button>
                     </div>
                 </div>
                 <br>
@@ -31,7 +31,7 @@
                    <li *ngFor="let musica of musicas; let e=odd;"  class="list-group-item">
                         <i *ngIf='musica?.selected == false || musica?.selected == null' (click)="adicionaAtalho(musica.id,musica.titulo,musica.musica)" class="fas fa-bookmark grey-text text-lighten-2"></i>
                         <i *ngIf='musica?.selected' (click)="tiraAtalho(musica.id,musica.titulo,musica.musica)" class="fas fa-bookmark red-text text-lighten-2"></i>
-                        <a *ngIf='musica?.vagalume' > {{musica.titulo}} </a>
+                        <a *ngIf='musica?.vagalume' data-test="praise-menu-search-vagalume-music"> {{musica.titulo}} </a>
                         <i *ngIf='musica?.vagalume' (click)="editar(musica.id,musica.titulo,musica.musica,false,musica.vagalume)" class="blue-text fas fa-cloud-download-alt pull-right"></i>
                         <a *ngIf='musica?.vagalume == null' (click)="carregaMusica(musica.titulo,musica.musica)"> {{musica.titulo}} </a>
                         <i *ngIf='musica?.vagalume == null' (click)="editar(musica.id,musica.titulo,musica.musica,musica.selected)" class="blue-text fas fa-edit pull-right"></i>
@@ -45,7 +45,7 @@
                 <input name='titulo' [(ngModel)] = "titulo" type="text" id="titulo" class="form-control" mdbActive>
                 <label for='texto'>Texto:</label>
                 <textarea #myTextArea (keyup)="getCaretPos(myTextArea)" name="texto" rows="40" [(ngModel)] = "texto" id="texto" (keyup) = "mudaTexto()" class="form-control" mdbActive></textarea>
-                <button type="button" class="btn btn-primary waves-light" (click)="salvar()" mdbWavesEffect>Salvar</button>
+                <button type="button" data-test="praise-menu-edit-save" class="btn btn-primary waves-light" (click)="salvar()" mdbWavesEffect>Salvar</button>
                 <button *ngIf="this.id" type="button" class="btn btn-danger lighten-4" (click)="excluir()" mdbWavesEffect>Excluir</button>
             </div>
         </div>

@@ -12,11 +12,11 @@
           <div class="row">
             <div class="col">
                 <label>Titulo:</label>
-                <input [(ngModel)] = "titulo" type="text" (keyup) = "atualizaTitulo()" id="titulo" class="form-control" mdbActive>
+                <input [(ngModel)] = "titulo" data-test="message-menu-title" type="text" (keyup) = "atualizaTitulo()" id="titulo" class="form-control" mdbActive>
             </div>
             <div class="col">
                 <label>Texto</label>
-                <input [(ngModel)] = "texto" type="text" (keyup) = "atualizaTexto()" id="texto"  class="form-control" mdbActive>
+                <input [(ngModel)] = "texto" data-test="message-menu-text" type="text" (keyup) = "atualizaTexto()" id="texto"  class="form-control" mdbActive>
             </div>
           </div>
         </div>

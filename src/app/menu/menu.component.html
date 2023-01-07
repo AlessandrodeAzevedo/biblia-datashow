@@ -1,11 +1,11 @@
 <div class="top-left">
-    <button (click)="mostrarConfiguracoes()" ><i class="fas fa-cogs"></i></button>
+    <button (click)="mostrarConfiguracoes()" data-test="general-menu-show" ><i class="fas fa-cogs"></i></button>
 </div>
 <div class="bottom-right">
-    <i (click)="navegar('biblia')" class="fas fa-book"></i>
-    <i (click)="navegar('standby')" class="far fa-images"></i>
-    <i (click)="navegar('mensagem')" class="far fa-newspaper"></i>
-    <i (click)="navegar('louvor')" class="fas fa-music"></i>
+    <i (click)="navegar('biblia')" data-test="general-menu-icon-bible" class="fas fa-book"></i>
+    <i (click)="navegar('standby')" data-test="general-menu-icon-standby" class="far fa-images"></i>
+    <i (click)="navegar('mensagem')" data-test="general-menu-icon-message"  class="far fa-newspaper"></i>
+    <i (click)="navegar('louvor')" data-test="general-menu-icon-praise" class="fas fa-music"></i>
 </div>
 <div mdbModal #menuGeral="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myMenuGeralLabel"
   aria-hidden="true">
@@ -31,11 +31,11 @@
             </div> 
           </form>
           <label for="exampleForm2">Api key Vagalume</label>
-          <input [(ngModel)] = "tokenVagalume" type="text" class="form-control">
+          <input [(ngModel)] = "tokenVagalume" data-test="general-menu-api-token" type="text" class="form-control">
       </div>
       <div class="modal-footer">
         <!-- <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="alterarImagem()" mdbWavesEffect>Close</button> -->
-        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="aplicarMudancas()" mdbWavesEffect>Aplicar mudanças</button>
+        <button type="button" mdbBtn color="primary" data-test="general-menu-button" class="relative waves-light" (click)="aplicarMudancas()" mdbWavesEffect>Aplicar mudanças</button>
       </div>
     </div>
   </div>

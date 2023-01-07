@@ -17,26 +17,26 @@
         <div class="row">
           <div class="col">
               <label>Livro:</label>
-              <select [(ngModel)] = "livro" (change) = "atualizaCapitulo()" class="form-control">
+              <select [(ngModel)] = "livro" data-test="bible-book" (change) = "atualizaCapitulo()" class="form-control">
                   <option *ngFor="let livro of livros" [value]="livro.id">{{livro.name}}</option>    
               </select>
           </div>
           <div class="col">
               <label for="capitulo">Capitulo</label>
-              <input [(ngModel)] = "capitulo" type="number" (change) = "atualizaVersiculo()" min="1" max="{{ maxCapitulo }}" id="capitulo" (change) = "verificaNumero()" class="form-control" mdbActive>
+              <input [(ngModel)] = "capitulo" type="number" data-test="bible-menu-chapter" (change) = "atualizaVersiculo()" min="1" max="{{ maxCapitulo }}" id="capitulo" (change) = "verificaNumero()" class="form-control" mdbActive>
           </div>
           <div class="col">
               <label for="versiculo">Versículo</label>
-              <input [(ngModel)] = "versiculo" type="number" min="1" [max]="maxVersiculo" id="versiculo" (change) = "verificaNumero()" class="form-control" mdbActive>
+              <input [(ngModel)] = "versiculo" type="number" data-test="bible-menu-verse" min="1" [max]="maxVersiculo" id="versiculo" (change) = "verificaNumero()" class="form-control" mdbActive>
           </div>
           <div class="col">
               <label for="versao">Versão</label>
-              <select [(ngModel)] = "versao" class="form-control">
+              <select [(ngModel)] = "versao" data-test="bible-menu-version" class="form-control">
                   <option *ngFor="let versao of versoes" [value]="versao.id">{{versao.name}}</option>
               </select>
           </div>
           <div class="col-md-2">
-              <button (click) = "novoTexto(true)" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
+              <button (click) = "novoTexto(true)" data-test="bible-menu-button" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
           </div>  
         </div>
       </div>

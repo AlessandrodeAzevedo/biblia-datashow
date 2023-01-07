@@ -7,16 +7,16 @@
       <div class="col-md-4 h100">
       </div>
       <div class="col-md-8 h100">
-        <div class="titulo" [ngStyle]="{'font-size': tituloFont + 'em'}">
+        <div class="titulo" data-test="message-title" [ngStyle]="{'font-size': tituloFont + 'em'}">
           {{ titulo }}
         </div>
         <div class="texto" [ngStyle]="{'font-size': textoFont + 'em','margin-top': margem + 'em'}">
-          <div>
+          <div data-test="message-text">
             {{ texto }}
           </div>
         </div>          
         <div class="col-md-6 logo">
-            <img src="{{ logo }}" data-toggle="modal" (click)="showMenu()" mdbRippleRadius >
+            <img src="{{ logo }}" data-test="message-logo" data-toggle="modal" (click)="showMenu()" mdbRippleRadius >
         </div>
       </div>
     </div>

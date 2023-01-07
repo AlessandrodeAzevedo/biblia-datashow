@@ -8,7 +8,7 @@
             <h4 class="modal-title w-100" id="myModalLabel">Atalho</h4>
         </div>
         <div class="modal-body">
-            <input #focusInput [(ngModel)] = "atalhoInput" type="text" nome="caminho" id="caminho" class="form-control" autofocus>
+            <input #focusInput [(ngModel)] = "atalhoInput" data-test="message-shotcut-input" type="text" nome="caminho" id="caminho" class="form-control" autofocus>
             <div *ngIf="error"  class="alert alert-danger" role="alert">
             {{ error }}
             </div>
